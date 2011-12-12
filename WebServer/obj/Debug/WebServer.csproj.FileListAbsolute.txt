@@ -1,0 +1,5 @@
+E:\my work\C#\Web\WebServer\WebServer\bin\WebServer.dll
+E:\my work\C#\Web\WebServer\WebServer\bin\WebServer.pdb
+E:\my work\C#\Web\WebServer\WebServer\obj\Debug\ResolveAssemblyReference.cache
+E:\my work\C#\Web\WebServer\WebServer\obj\Debug\WebServer.dll
+E:\my work\C#\Web\WebServer\WebServer\obj\Debug\WebServer.pdb
