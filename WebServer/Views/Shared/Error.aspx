@@ -6,6 +6,6 @@
 
 <asp:Content ID="errorContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        <% ViewData.Model.ErrorMessage %>
+        <% =ViewData.Model.ErrorMessage %>
     </h2>
 </asp:Content>
