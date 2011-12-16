@@ -69,6 +69,7 @@
     <Compile Include="Controllers\GetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadController.cs" />
+    <Compile Include="Data\DocumentManager.cs" />
     <Compile Include="Data\IDocumentManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
