@@ -9,8 +9,8 @@ namespace WebServer.Controllers
     public class GetController : Controller
     {
 
-        //------------------------------------------------------------------------------------------
-        //------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
 	/// <summary>
 	/// Actiunea ce intoarce un fisier XML, avand ca date timeline-ul documenutlui impreuna cu
         /// relatiile dintre personaje / relatii etc.
