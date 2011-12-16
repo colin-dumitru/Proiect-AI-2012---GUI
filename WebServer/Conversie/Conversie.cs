@@ -7,5 +7,6 @@ namespace WebServer.Conversie
 {
     public class Conversie
     {
+        Console.WriteLine("Hello World");
     }
 }
