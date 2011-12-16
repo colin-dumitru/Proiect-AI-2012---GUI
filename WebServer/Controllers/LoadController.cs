@@ -40,7 +40,7 @@ namespace WebServer.Controllers
         /// <summary>
         ///  Action-ul paginii ce incarca un document deja parsat.
         /// </summary>
-        /// <param name="id">Id-ul documentului ce trebuie incarcat.</param>
+        /// <param name="id">Id-ul documentului ce trebuie incarcat.</param>    
         public ActionResult Load(int? id) {
             /*nu este specificat id-ul documentului*/
             if (id == null)
