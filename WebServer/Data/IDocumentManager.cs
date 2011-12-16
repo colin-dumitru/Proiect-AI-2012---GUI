@@ -6,6 +6,7 @@ using System.IO;
 
 namespace WebServer.Data {
     public interface IDocumentManager {
+	
         /// <summary>
         /// Trimite documentul spre a fi parsat, si salveaza rezultatele cu un id unic.
         /// </summary>
