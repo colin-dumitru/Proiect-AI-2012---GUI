@@ -11,6 +11,10 @@
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        
+        <% using(Html.BeginForm("Upload", "Load", FormMethod.Post, new { enctype = "multipart/form-data" })){ %>
+    	    <%: Html.ValidationSummary() %>
+            <input type="file" id="fileUpload" name="file"/>
+            <input type="submit" id="submitBtn" value="Upload"/>
+        <% } %>
     </div>
 </asp:Content>
