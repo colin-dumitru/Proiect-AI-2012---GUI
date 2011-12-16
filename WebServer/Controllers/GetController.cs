@@ -7,11 +7,11 @@ using System.Web.Mvc;
 namespace WebServer.Controllers
 {
     public class GetController : Controller
-    {	
-        //------------------------------------------------------------------------------------------
-        //------------------------------------------------------------------------------------------
-	/// <summary>
-	/// Actiunea ce intoarce un fisier XML, avand ca date timeline-ul documenutlui impreuna cu
+    {
+		// ------------------------------------------------------------------------------------------
+		// ------------------------------------------------------------------------------------------
+		/// <summary>
+		/// Actiunea ce intoarce un fisier XML, avand ca date timeline-ul documenutlui impreuna cu
         /// relatiile dintre personaje / relatii etc.
 		/// </summary>		
         /// <param name="id">Id-ul documentului.</param>
@@ -29,6 +29,7 @@ namespace WebServer.Controllers
         public ActionResult Summary(int? id) {
             return View();
         }
+
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
         /// <summary>
