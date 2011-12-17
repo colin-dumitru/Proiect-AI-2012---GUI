@@ -45,7 +45,7 @@ namespace WebServer.Data
                         break;
                     }
                 // daca gata a ramas true, putem iesi din bucla infinita
-                // pt ca am gasit ceea ce cautam
+                // pt. ca am gasit ceea ce cautam
                 if (gata)
                     break;
             }
