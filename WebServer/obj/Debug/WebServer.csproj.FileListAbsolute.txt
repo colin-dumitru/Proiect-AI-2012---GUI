@@ -8,3 +8,8 @@ E:\my work\C#\ai\Proiect-AI-2012---GUI\WebServer\bin\WebServer.pdb
 E:\my work\C#\ai\Proiect-AI-2012---GUI\WebServer\obj\Debug\ResolveAssemblyReference.cache
 E:\my work\C#\ai\Proiect-AI-2012---GUI\WebServer\obj\Debug\WebServer.dll
 E:\my work\C#\ai\Proiect-AI-2012---GUI\WebServer\obj\Debug\WebServer.pdb
+C:\ProiectIA\WebServer\bin\WebServer.dll
+C:\ProiectIA\WebServer\bin\WebServer.pdb
+C:\ProiectIA\WebServer\obj\Debug\ResolveAssemblyReference.cache
+C:\ProiectIA\WebServer\obj\Debug\WebServer.dll
+C:\ProiectIA\WebServer\obj\Debug\WebServer.pdb
