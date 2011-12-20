@@ -37,7 +37,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -74,12 +77,24 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DocumentDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentEntityManager.cs" />
+    <Compile Include="Models\IDocumentEntityManager.cs" />
     <Compile Include="ModelView\DocumentModelView.cs" />
     <Compile Include="ModelView\ErrorModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\WebServerDatabase.mdf" />
+    <Content Include="App_Data\WebServerDatabase_log.ldf">
+      <DependentUpon>WebServerDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
+    <Content Include="Models\DocumentDataModel.edmx.sql" />
     <Content Include="Views\Home\Interactivity.aspx" />
     <Content Include="Views\Home\TimeLine.aspx" />
     <Content Include="Views\Home\Summary.aspx" />
@@ -109,8 +124,13 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="App_Data\App_LocalResources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\DocumentDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DocumentDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -5,6 +5,7 @@ using System.Web;
 using System.IO;
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
+using WebServer.Models;
 
 namespace WebServer.Data
 {
@@ -41,7 +42,10 @@ namespace WebServer.Data
     public class DocumentManager : IDocumentManager
     { 
         public const String ConfigFile = "config";
-        public const String MainDocument = "main";
+        public const String TypeMain = "main";
+
+        /*folosit pentru a adauga documente in baza de date*/
+        public IDocumentEntityManager EntityManager { get; set; }
 
         /*configuratia managerului*/
         private DocumentManagerConfig _config = null;        
@@ -94,41 +98,24 @@ namespace WebServer.Data
             }
         }
 
-        public int StoreDocument(Stream fileStream)
+        public int StoreDocument(String fileName, Stream fileStream)
         {
-            if (this._config == null)
+            if (this._config == null || this.EntityManager == null)
                 throw new DocumentException("Configuratie inexistenta");
 
-            /*id-ul il generam unic, incrementand 1 la ultimul id generat*/
-            int id = this._config.UniqueId;         
-          
-            string newFolder = Environment.CurrentDirectory + "\\" + id.ToString();
+            /*adaugam un document nou ce va contine fisierele propriuzise*/
+            Document doc = this.EntityManager.CreateDocument(fileName);
 
-            // creem directorul
-            Directory.CreateDirectory(newFolder);
-
-            using(Stream stream = File.Open(newFolder + "\\" + MainDocument, 
-                FileMode.OpenOrCreate, FileAccess.Write)) {
-                 /*copiem datele din streamul vechi in documentul principal -- numele va fie mereu acelasi*/
-                 fileStream.CopyTo(stream);
-            }
+            /*adaugam fisierul initial*/
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeMain, fileStream);
 
             //returnam id-ul
-            return id;
+            return doc.Id;
         }
 
         public Stream GetDocument(int id)
         {
-            // verificam mai intai daca exista fisierul cu id-ul respectiv
-            if (!Directory.Exists(Environment.CurrentDirectory + "\\" + id.ToString()))
-            {
-                throw new DocumentException("Nu exista un document cu id-ul respectiv");
-            }
-
-            /*deschidem un stream catre documentul principal*/
-            return File.OpenRead(Environment.CurrentDirectory + "\\" + id.ToString() +
-                "\\" + MainDocument);
-
+            return null;
            
         }
 
@@ -136,5 +123,7 @@ namespace WebServer.Data
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

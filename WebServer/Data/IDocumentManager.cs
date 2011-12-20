@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
+using WebServer.Models;
 
 namespace WebServer.Data {
     public interface IDocumentManager {
+        IDocumentEntityManager EntityManager { get; set; }
 	
         /// <summary>
         /// Trimite documentul spre a fi parsat, si salveaza rezultatele cu un id unic.
         /// </summary>
         /// <param name="fileStream">Fisierul ce trebuie parsat.</param>
         /// <returns>Id-ul unic ce va fi folosit pentru a lua ulterior datele.</returns>
-        int StoreDocument(Stream fileStream);
+        int StoreDocument(String fileName, Stream fileStream);
 
         /// <summary>
         /// Intoarce documentul original.

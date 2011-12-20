@@ -5,18 +5,24 @@ using System.Web;
 using System.Web.Mvc;
 using WebServer.ModelView;
 using WebServer.Data;
+using WebServer.Models;
 
 namespace WebServer.Controllers
 {
     public class LoadController : Controller
     {
         private IDocumentManager _documentManager = null;
+        private IDocumentEntityManager _entityManager = null;
 
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
         public LoadController() {
+            /*initializam entity manager-ul*/
+            this._entityManager = new DocumentEntityManager();
             /*TODO initializam document manager*/
-            this._documentManager = new DocumentManager();
+            this._documentManager = new DocumentManager() {
+                EntityManager = this._entityManager
+            };
         }
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
@@ -32,7 +38,7 @@ namespace WebServer.Controllers
 
             /*trimitem documentul pentru a fi parsat*/
             if(this._documentManager != null)
-                id = this._documentManager.StoreDocument(file.InputStream);
+                id = this._documentManager.StoreDocument(file.FileName, file.InputStream);
 
             return RedirectToAction("Summary", "Home", new { id = id });
         }
