@@ -13,3 +13,8 @@ C:\ProiectIA\WebServer\bin\WebServer.pdb
 C:\ProiectIA\WebServer\obj\Debug\ResolveAssemblyReference.cache
 C:\ProiectIA\WebServer\obj\Debug\WebServer.dll
 C:\ProiectIA\WebServer\obj\Debug\WebServer.pdb
+D:\anul III\IA\Proiect-IA---GUI\WebServer\bin\WebServer.dll
+D:\anul III\IA\Proiect-IA---GUI\WebServer\bin\WebServer.pdb
+D:\anul III\IA\Proiect-IA---GUI\WebServer\obj\Debug\ResolveAssemblyReference.cache
+D:\anul III\IA\Proiect-IA---GUI\WebServer\obj\Debug\WebServer.dll
+D:\anul III\IA\Proiect-IA---GUI\WebServer\obj\Debug\WebServer.pdb
