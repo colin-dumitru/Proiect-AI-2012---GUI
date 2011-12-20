@@ -18,3 +18,8 @@ D:\anul III\IA\Proiect-IA---GUI\WebServer\bin\WebServer.pdb
 D:\anul III\IA\Proiect-IA---GUI\WebServer\obj\Debug\ResolveAssemblyReference.cache
 D:\anul III\IA\Proiect-IA---GUI\WebServer\obj\Debug\WebServer.dll
 D:\anul III\IA\Proiect-IA---GUI\WebServer\obj\Debug\WebServer.pdb
+C:\Users\zuz\Desktop\Proiect-AI---GUI\WebServer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\zuz\Desktop\Proiect-AI---GUI\WebServer\bin\WebServer.dll
+C:\Users\zuz\Desktop\Proiect-AI---GUI\WebServer\bin\WebServer.pdb
+C:\Users\zuz\Desktop\Proiect-AI---GUI\WebServer\obj\Debug\WebServer.dll
+C:\Users\zuz\Desktop\Proiect-AI---GUI\WebServer\obj\Debug\WebServer.pdb

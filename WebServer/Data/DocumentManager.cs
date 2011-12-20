@@ -9,65 +9,109 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace WebServer.Data
 {
 
-    public class DocumentManager : IDocumentManager
+    [Serializable]
+    class DocumentManagerConfig
     {
+        private int _lastid = 0;
+
+
+        /*numarul folosit la generarea id-urilor unice*/
+        public int UniqueId
+        {
+            get
+            {
+                return (this._lastid++);
+            }
+        }
+    }
+
+    [Serializable]
+    public class DocumentException : Exception
+    {
+        public DocumentException() { }
+        public DocumentException(string message) : base(message) { }
+        public DocumentException(string message, Exception inner) : base(message, inner) { }
+        protected DocumentException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context)
+            : base(info, context) { }
+    }
+    
+
+    public class DocumentManager : IDocumentManager
+    { 
+        public const String ConfigFile = "config";
+        public const String MainDocument = "main";
+
+        /*configuratia managerului*/
+        private DocumentManagerConfig _config = null;        
+
+        public DocumentManager()
+        {
+            /*in constructor deserializam configuratia*/
+            Stream stream = null;
+
+            try
+            {
+                stream = File.OpenRead(ConfigFile);
+                BinaryFormatter bf = new BinaryFormatter();
+                this._config = bf.Deserialize(stream) as DocumentManagerConfig;
+
+                if (this._config == null)
+                    throw new Exception();
+
+            }
+            catch (Exception)
+            {
+                this._config = new DocumentManagerConfig();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+        }
+
+        ~DocumentManager()
+        {
+            /*in constructor deserializam configuratia*/
+            Stream stream = null;
+
+            try
+            {
+                stream = File.OpenWrite(ConfigFile);
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(stream, this._config);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+        }
+
         public int StoreDocument(Stream fileStream)
         {
-            // valoarea de return
-            int id = 0;
+            if (this._config == null)
+                throw new DocumentException("Configuratie inexistenta");
 
-            //verficam mai intai daca exista in directorul curent 
-            // vreun folder care are nume de tip ID (adica un numar)
-            // daca nu exista, vom stoca fisierul primit la intrare intr-un folder cu numele "0"
-            // in caz contrar, numele noului folderului va fi cel mai mic numar intreg
-            // care nu reprezinta numele nici unui alt subfolder
-            // Ex: daca folderul curent are subfolderele 0 1 2 3, atunci numele noului subfolder va fi 4
-            // Daca fodlerul are subfolderele 0 1 3, atunci numele noului folder va fi 2
-
-            // vom obtine mai intai toate subfolderele
-            DirectoryInfo[] foldereCopil = new DirectoryInfo(Environment.CurrentDirectory).GetDirectories();
-            while (true)
-            {
-                // gata ne va spune daca iesim sau nu din bucla infinita
-                bool gata = true;
-
-                // comparam numele fiecarui subfolder cu ID-ul curent (care porneste initial de la 0, si apoi tot creste)
-                foreach (DirectoryInfo copil in foldereCopil)
-                    // daca exista deja folderul cu numele id
-                    // incrementam id
-                    // gata va fi fals pt a nu iesi din bucla infinita inca
-                    // si oprim foreach-ul, deoarece nu mai are sens sa cautam 
-                    // pt. moment (deja stim ca exista un folder cu numele id)
-                    if (copil.Name == id.ToString())
-                    {
-                        id++;
-                        gata = false;
-                        break;
-                    }
-                // daca gata a ramas true, putem iesi din bucla infinita
-                // pt. ca am gasit ceea ce cautam
-                if (gata)
-                    break;
-            }
-            // newFolder va fi numele folderului pe care il vom crea
-            // calea sa va fi calea directorului curent concatenat cu numele id-ului
+            /*id-ul il generam unic, incrementand 1 la ultimul id generat*/
+            int id = this._config.UniqueId;         
+          
             string newFolder = Environment.CurrentDirectory + "\\" + id.ToString();
 
             // creem directorul
             Directory.CreateDirectory(newFolder);
 
-            // avem nevoie de un FileStream deoarece dintr-un obiect de tip Stream
-            // nu putem afla numele fisierului catre care "pointeaza" Stream-ul
-            FileStream fStream = (FileStream)fileStream;
-
-            // obtinem numele fisierului catre care "pointeaza" Stream-ul
-            string numeFisier = new FileInfo(fStream.Name).Name;
-
-            // copiem fisierul in noul folder
-            fileStream.CopyTo(new FileStream(newFolder + "\\" + numeFisier, FileMode.Create));
-
-            // inchidem FileStream-ul
-            fStream.Close();
+            using(Stream stream = File.Open(newFolder + "\\" + MainDocument, 
+                FileMode.OpenOrCreate, FileAccess.Write)) {
+                 /*copiem datele din streamul vechi in documentul principal -- numele va fie mereu acelasi*/
+                 fileStream.CopyTo(stream);
+            }
 
             //returnam id-ul
             return id;
@@ -76,38 +120,16 @@ namespace WebServer.Data
         public Stream GetDocument(int id)
         {
             // verificam mai intai daca exista fisierul cu id-ul respectiv
-
-            // obtinem toate folderele din directorul curent
-            DirectoryInfo[] foldereCopil = new DirectoryInfo(Environment.CurrentDirectory).GetDirectories();
-
-            // gasit ne va spune daca l-am gasit
-            bool gasit = false;
-
-            // comparam numele fiecarui subfolder cu id
-            foreach (DirectoryInfo copil in foldereCopil)
-                if (copil.Name == id.ToString())
-                {
-                    // daca l-am gasit, il setam pe gasit pe true
-                    gasit = true;
-
-                    // si iesim din bucla
-                    break;
-                }
-            if (gasit)
-            // daca s-a gasit
+            if (!Directory.Exists(Environment.CurrentDirectory + "\\" + id.ToString()))
             {
-                // obtinem calea catre fisierul respectiv, care va fi
-                // (teoretic) singurul din folderul respectiv, 
-                // deci cel de indice 0 din lista de fisiere a folderului
-                string fisier = new DirectoryInfo(id.ToString()).GetFiles()[0].FullName;
-
-                // creem un FileStream car fisier
-                FileStream stream = new FileStream(fisier, FileMode.Open);
-
-                // si returnam stream-ul respectiv
-                return stream;
+                throw new DocumentException("Nu exista un document cu id-ul respectiv");
             }
-            return null;
+
+            /*deschidem un stream catre documentul principal*/
+            return File.OpenRead(Environment.CurrentDirectory + "\\" + id.ToString() +
+                "\\" + MainDocument);
+
+           
         }
 
         public System.IO.Stream GetDocument(int id, string type)
