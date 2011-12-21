@@ -222,13 +222,15 @@ namespace WebServer.Models
         /// <param name="documentId">Initial value of the DocumentId property.</param>
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="document">Initial value of the Document property.</param>
-        public static DocumentOutput CreateDocumentOutput(global::System.Int32 id, global::System.Int32 documentId, global::System.String type, global::System.String document)
+        /// <param name="status">Initial value of the Status property.</param>
+        public static DocumentOutput CreateDocumentOutput(global::System.Int32 id, global::System.Int32 documentId, global::System.String type, global::System.String document, global::System.Int32 status)
         {
             DocumentOutput documentOutput = new DocumentOutput();
             documentOutput.Id = id;
             documentOutput.DocumentId = documentId;
             documentOutput.Type = type;
             documentOutput.Document = document;
+            documentOutput.Status = status;
             return documentOutput;
         }
 
@@ -333,6 +335,30 @@ namespace WebServer.Models
         private global::System.String _Document;
         partial void OnDocumentChanging(global::System.String value);
         partial void OnDocumentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                OnStatusChanging(value);
+                ReportPropertyChanging("Status");
+                _Status = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Status");
+                OnStatusChanged();
+            }
+        }
+        private global::System.Int32 _Status;
+        partial void OnStatusChanging(global::System.Int32 value);
+        partial void OnStatusChanged();
 
         #endregion
     

@@ -24,6 +24,7 @@
     <Property Name="DocumentId" Type="int" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Document" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -48,6 +49,7 @@
           <Property Type="Int32" Name="DocumentId" Nullable="false" />
           <Property Type="String" Name="Type" Nullable="false" />
           <Property Type="String" Name="Document" Nullable="false" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -70,6 +72,7 @@
           <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -94,7 +97,7 @@
     <edmx:Diagrams>
       <Diagram Name="DocumentDataModel" >
         <EntityTypeShape EntityType="DocumentDataModel.Document" Width="1.5" PointX="1.375" PointY="2.125" Height="1.4033821614583331" />
-        <EntityTypeShape EntityType="DocumentDataModel.DocumentOutput" Width="1.5" PointX="5" PointY="3.25" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="DocumentDataModel.DocumentOutput" Width="1.5" PointX="5" PointY="3.25" Height="1.9802864583333326" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

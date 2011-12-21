@@ -61,20 +61,20 @@ namespace WebServer.Models {
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
 
-        public DocumentOutput AddDocumentOutput(int documentId, string type, System.IO.Stream file) {
+        public DocumentOutput AddDocumentOutput(int documentId, string type, int status, System.IO.Stream file) {
             if (this._dbContainer == null)
                 throw new EntityManagerException("Nu suntem conectati la baza de date!");
 
             byte[] buffer = new byte[file.Length];
             file.Read(buffer, 0, (int)file.Length);
 
-            return this.AddDocumentOutput(documentId, type,
+            return this.AddDocumentOutput(documentId, type, status,
                 Encoding.UTF8.GetString(buffer, 0, buffer.Length));                        
         }
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
 
-        public DocumentOutput AddDocumentOutput(int documentId, string type, string file) {
+        public DocumentOutput AddDocumentOutput(int documentId, string type, int status, string file) {
             if (this._dbContainer == null)
                 throw new EntityManagerException("Nu suntem conectati la baza de date!");
 
@@ -97,6 +97,7 @@ namespace WebServer.Models {
             DocumentOutput ret = new DocumentOutput() {
                 DocumentId = documentId,
                 Document = file,
+                Status = status,
                 Type = type
             };
 

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 12/20/2011 23:11:32
--- Generated from EDMX file: D:\Proiect-AI--GUI-IUSTINA\WebServer\Models\DocumentDataModel.edmx
+-- Date Created: 12/21/2011 19:04:36
+-- Generated from EDMX file: E:\my work\C#\ai\Proiect-AI-2012---GUI\WebServer\Models\DocumentDataModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -22,6 +22,12 @@ GO
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Documents]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Documents];
+GO
+IF OBJECT_ID(N'[dbo].[DocumentOutputs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DocumentOutputs];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -39,7 +45,8 @@ CREATE TABLE [dbo].[DocumentOutputs] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [DocumentId] int  NOT NULL,
     [Type] nvarchar(max)  NOT NULL,
-    [Document] nvarchar(max)  NOT NULL
+    [Document] nvarchar(max)  NOT NULL,
+    [Status] int  NOT NULL
 );
 GO
 

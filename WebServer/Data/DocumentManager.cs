@@ -43,6 +43,12 @@ namespace WebServer.Data
     { 
         public const String ConfigFile = "config";
         public const String TypeMain = "main";
+        public const String TypeSummary = "summary";
+        public const String TypeTimeline = "timeline";
+
+        public const int StatusOK = 1;
+        public const int StatusEmpty = 0;
+        public const int StatusParsing = 2;
 
         /*folosit pentru a adauga documente in baza de date*/
         public IDocumentEntityManager EntityManager { get; set; }
@@ -107,7 +113,11 @@ namespace WebServer.Data
             Document doc = this.EntityManager.CreateDocument(fileName);
 
             /*adaugam fisierul initial*/
-            this.EntityManager.AddDocumentOutput(doc.Id, TypeMain, fileStream);
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeMain, StatusEmpty, fileStream);
+            /*si celalte fisiere goale*/
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeSummary, StatusEmpty, "");
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeTimeline, StatusEmpty, "");
+
 
             //returnam id-ul
             return doc.Id;

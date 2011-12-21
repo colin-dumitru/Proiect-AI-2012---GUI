@@ -25,7 +25,8 @@ namespace WebServer.Models {
         /// <param name="documentId">Id-ul unic al documentului</param>
         /// <param name="type">Tipul documentului (eg: summary, timeline)</param>
         /// <param name="file">Un stream ce arata spre fisierul propriuzis</param>
-        DocumentOutput AddDocumentOutput(int documentId, String type, Stream file);
+        /// <param name="status">Statusul initialt al documentului.</param>
+        DocumentOutput AddDocumentOutput(int documentId, String type, int status, Stream file);
 
         /// <summary>
         /// Adauga un fisier nou pentru documentul cu id-ul documentId.
@@ -33,7 +34,8 @@ namespace WebServer.Models {
         /// <param name="documentId">Id-ul unic al documentului</param>
         /// <param name="type">Tipul documentului (eg: summary, timeline)</param>
         /// <param name="file">Continutul fisierului</param>
-        DocumentOutput AddDocumentOutput(int documentId, String type, String file);
+        /// <param name="status">Statusul initialt al documentului.</param>
+        DocumentOutput AddDocumentOutput(int documentId, String type, int status, String file);
 
         /// <summary>
         /// Intoarce un fisier din baza de date legat

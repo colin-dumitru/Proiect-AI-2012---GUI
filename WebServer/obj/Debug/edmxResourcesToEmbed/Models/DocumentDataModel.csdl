@@ -19,5 +19,6 @@
     <Property Type="Int32" Name="DocumentId" Nullable="false" />
     <Property Type="String" Name="Type" Nullable="false" />
     <Property Type="String" Name="Document" Nullable="false" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
   </EntityType>
 </Schema>

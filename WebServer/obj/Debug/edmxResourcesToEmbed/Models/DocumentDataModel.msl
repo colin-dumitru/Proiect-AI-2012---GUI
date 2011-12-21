@@ -16,6 +16,7 @@
           <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

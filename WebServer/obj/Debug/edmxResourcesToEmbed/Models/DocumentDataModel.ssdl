@@ -19,5 +19,6 @@
     <Property Name="DocumentId" Type="int" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Document" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
   </EntityType>
 </Schema>
