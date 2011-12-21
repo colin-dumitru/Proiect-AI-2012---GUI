@@ -38,3 +38,13 @@ C:\Users\bkt\Desktop\Proiect-AI--GUI-IUSTINA\WebServer\bin\WebServer.pdb
 C:\Users\bkt\Desktop\Proiect-AI--GUI-IUSTINA\WebServer\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\bkt\Desktop\Proiect-AI--GUI-IUSTINA\WebServer\obj\Debug\WebServer.dll
 C:\Users\bkt\Desktop\Proiect-AI--GUI-IUSTINA\WebServer\obj\Debug\WebServer.pdb
+\\FENRIR\catalin.dumitru\Desktop\Proiect-AI\WebServer\bin\WebServer.dll
+\\FENRIR\catalin.dumitru\Desktop\Proiect-AI\WebServer\bin\WebServer.pdb
+\\FENRIR\catalin.dumitru\Desktop\Proiect-AI\WebServer\obj\Debug\ResolveAssemblyReference.cache
+\\FENRIR\catalin.dumitru\Desktop\Proiect-AI\WebServer\obj\Debug\WebServer.dll
+\\FENRIR\catalin.dumitru\Desktop\Proiect-AI\WebServer\obj\Debug\WebServer.pdb
+D:\Proiect-AI\WebServer\bin\WebServer.dll
+D:\Proiect-AI\WebServer\bin\WebServer.pdb
+D:\Proiect-AI\WebServer\obj\Debug\ResolveAssemblyReference.cache
+D:\Proiect-AI\WebServer\obj\Debug\WebServer.dll
+D:\Proiect-AI\WebServer\obj\Debug\WebServer.pdb
