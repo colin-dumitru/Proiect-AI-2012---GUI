@@ -14,8 +14,11 @@ namespace WebServer.Controllers {
 	/// <summary>
 	/// Action-ul paginii principale (ce incarca fisierul ce trebuie parsat).
 	/// </summary>
-        public ActionResult Index() {
-            return View(new DocumentModelView { DocumentId = 12354 });
+        public ActionResult Index(int? id) {
+            if (id != null)
+                return View(new DocumentModelView { DocumentId = id ?? -1 });
+            else
+                return View();
         }
         
         //------------------------------------------------------------------------------------------

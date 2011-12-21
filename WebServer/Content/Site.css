@@ -5,7 +5,7 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
+    background-color: #95badb;
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -84,7 +84,7 @@ first child of the left and right table columns */
 page width. Or, you can specify an exact pixel width. */
 .page
 {
-    width: 90%;
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -92,30 +92,39 @@ page width. Or, you can specify an exact pixel width. */
 #header
 {
     position: relative;
-    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 30px;
     color: #000;
     padding: 0;
-    height: 50px;
+    height: 30px;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px 0px 10px #555;
+    background-image: linear-gradient(bottom, rgb(56,55,56) 0%, rgb(82,82,82) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(56,55,56) 0%, rgb(82,82,82) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(56,55,56) 0%, rgb(82,82,82) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(56,55,56) 0%, rgb(82,82,82) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(56,55,56) 0%, rgb(82,82,82) 100%);
 }
 
 #header h1
 {
     font-weight: bold;
-    padding: 0px 0;
+    padding: 5px;
     margin: 0;
-    color: #fff;
+    color: #DDD;
     border: none;
-    line-height: 2em;
+    line-height: 1em;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 32px !important;
+    font-size: 17px !important;
 }
 
 #main
 {
     padding: 30px 30px 15px 30px;
-    background-color: #fff;
+    background-color: #F5F5F5;
     margin-bottom: 30px;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #555;
 }
 
 #footer
@@ -132,7 +141,7 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    border-bottom: 1px #5C87B2 solid;
+    
     padding: 0 0 2px;
     position: relative;
     margin: 0;
@@ -143,43 +152,22 @@ ul#menu li
 {
     display: inline;
     list-style: none;
-}
-
-ul#menu li#greeting
-{
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    color: #fff;
+    border-left: 1px solid #EEE;
 }
 
 ul#menu li a
 {
-    padding: 10px 20px;
+    padding: 5px 5px;
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-    background-color: #e8eef4;
-    color: #034af3;
+    color: #AAA;
 }
 
 ul#menu li a:hover
 {
-    background-color: #fff;
+    color: #DDD;
     text-decoration: none;
-}
-
-ul#menu li a:active
-{
-    background-color: #a6e2a6;
-    text-decoration: none;
-}
-
-ul#menu li.selected a
-{
-    background-color: #fff;
-    color: #000;
 }
 
 /* FORM LAYOUT ELEMENTS   
@@ -253,7 +241,6 @@ table th
 
 #menucontainer
 {
-    margin-top:40px;
 }
 
 div#title
