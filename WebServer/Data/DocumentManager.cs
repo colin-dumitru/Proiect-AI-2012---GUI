@@ -113,13 +113,13 @@ namespace WebServer.Data
             return doc.Id;
         }
 
-        public Stream GetDocument(int id)
+        public String GetDocument(int id)
         {
             return null;
            
         }
 
-        public System.IO.Stream GetDocument(int id, string type)
+        public String GetDocument(int id, string type)
         {
             throw new NotImplementedException();
         }

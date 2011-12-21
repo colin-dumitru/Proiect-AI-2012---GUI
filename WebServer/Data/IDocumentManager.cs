@@ -21,7 +21,7 @@ namespace WebServer.Data {
         /// </summary>
         /// <param name="id">Id-ul documentului ce trebuie intors.</param>
         /// <returns>Un stream ce arata spre documentul original, sau null daca nu a fost gasit</returns>
-        Stream GetDocument(int id);
+        String GetDocument(int id);
 
         /// <summary>
         /// Intoarce unul din documentele rezultante din parsarea celui original.
@@ -29,7 +29,7 @@ namespace WebServer.Data {
         /// <param name="id">id-ul documentului original.</param>
         /// <param name="type">Tipul documentului ce trebuie intors (eg: rezumat, timeline etc.)</param>
         /// <returns>Un stream ce arata spre documentul dorit, sau null daca nu a fost gasit </returns>
-        Stream GetDocument(int id, String type);
+        String GetDocument(int id, String type);
 
     }
 }
