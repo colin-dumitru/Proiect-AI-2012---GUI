@@ -55,8 +55,15 @@ namespace WebServer.Models {
         //------------------------------------------------------------------------------------------
 
         public Document GetDocument(int documentid) {
-            throw new NotImplementedException();
+            if (this._dbContainer == null)
+                throw new EntityManagerException("Nu suntem conectati la baza de date!");
 
+            /*selectam documentele din baza de date ce au id-ul specificat*/
+            var res = (from d in this._dbContainer.Documents
+                       where d.Id == documentid
+                       select d).ToList();
+
+            return (res.Count > 0) ? res[0] : null;
         }
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
@@ -65,6 +72,7 @@ namespace WebServer.Models {
             if (this._dbContainer == null)
                 throw new EntityManagerException("Nu suntem conectati la baza de date!");
 
+            /*citim tot ce este in buffer*/
             byte[] buffer = new byte[file.Length];
             file.Read(buffer, 0, (int)file.Length);
 
@@ -111,13 +119,56 @@ namespace WebServer.Models {
         //------------------------------------------------------------------------------------------
 
         public DocumentOutput GetDocumentOutput(int documentId, string type) {
-            throw new NotImplementedException();
+            if (this._dbContainer == null)
+                throw new EntityManagerException("Nu suntem conectati la baza de date!");
+
+            /*verificam daca exista un document cu id-ul respectiv*/
+            List<Document> rezDoc = (from d in this._dbContainer.Documents
+                                     where d.Id == documentId
+                                     select d).ToList();
+
+            if (rezDoc.Count != 1)
+                throw new EntityManagerException("Nu exista un document cu id-ul specificat.");
+
+            /*verificam daca mai sunt alte fisiere pentru acelasi document id cu tipul specificat*/
+            List<DocumentOutput> rezOut = (from d in this._dbContainer.DocumentOutputs
+                                           where d.DocumentId == documentId && d.Type == type
+                                           select d).ToList();
+            if (rezOut.Count == 0)
+                throw new EntityManagerException("Mai exista si alte fisiere cu acelasi tip.");
+
+            return rezOut[0];
+            
         }
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
 
         public void RemoveDocument(int documentId) {
-            throw new NotImplementedException();
+            if (this._dbContainer == null)
+                throw new EntityManagerException("Nu suntem conectati la baza de date!");
+
+            /*verificam daca exista un document cu id-ul respectiv*/
+            List<Document> rezDoc = (from d in this._dbContainer.Documents
+                                     where d.Id == documentId
+                                     select d).ToList();
+
+            if (rezDoc.Count != 1)
+                throw new EntityManagerException("Nu exista un document cu id-ul specificat.");
+
+            /*verificam daca mai sunt alte fisiere pentru acelasi document id cu tipul specificat*/
+            List<DocumentOutput> rezOut = (from d in this._dbContainer.DocumentOutputs
+                                           where d.DocumentId == documentId
+                                           select d).ToList();
+
+            /*stergem obiectele din baza de date*/
+            foreach (var doc in rezOut)
+            {
+                this._dbContainer.DocumentOutputs.DeleteObject(doc);                
+            }
+
+            /*stergem documentul principal*/
+            this._dbContainer.Documents.DeleteObject(rezDoc[0]);
+            
         }
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------

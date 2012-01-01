@@ -131,7 +131,23 @@ namespace WebServer.Data
 
         public String GetDocument(int id, string type)
         {
-            throw new NotImplementedException();
+            DocumentOutput res = null;
+
+            try
+            {
+                 res = this.EntityManager.GetDocumentOutput(id, type);
+                 if (res == null)
+                     throw new EntityManagerException();
+            }
+            catch (EntityManagerException)
+            {
+                throw new DocumentException("Documentul nu a fost gasit");
+            }
+
+            if (res.Status == StatusOK)
+                return res.Document;
+            else
+                return null;
         }
 
         

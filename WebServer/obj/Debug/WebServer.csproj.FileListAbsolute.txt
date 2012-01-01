@@ -48,3 +48,8 @@ D:\Proiect-AI\WebServer\bin\WebServer.pdb
 D:\Proiect-AI\WebServer\obj\Debug\ResolveAssemblyReference.cache
 D:\Proiect-AI\WebServer\obj\Debug\WebServer.dll
 D:\Proiect-AI\WebServer\obj\Debug\WebServer.pdb
+D:\My Work\Dot Net\Ai\PROIECT-AI---GUI\WebServer\bin\WebServer.dll
+D:\My Work\Dot Net\Ai\PROIECT-AI---GUI\WebServer\bin\WebServer.pdb
+D:\My Work\Dot Net\Ai\PROIECT-AI---GUI\WebServer\obj\Debug\ResolveAssemblyReference.cache
+D:\My Work\Dot Net\Ai\PROIECT-AI---GUI\WebServer\obj\Debug\WebServer.dll
+D:\My Work\Dot Net\Ai\PROIECT-AI---GUI\WebServer\obj\Debug\WebServer.pdb
