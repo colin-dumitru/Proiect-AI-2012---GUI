@@ -72,6 +72,7 @@ namespace WebServer.Models {
             if (this._dbContainer == null)
                 throw new EntityManagerException("Nu suntem conectati la baza de date!");
 
+            file.Seek(0, System.IO.SeekOrigin.Begin);
             /*citim tot ce este in buffer*/
             byte[] buffer = new byte[file.Length];
             file.Read(buffer, 0, (int)file.Length);
