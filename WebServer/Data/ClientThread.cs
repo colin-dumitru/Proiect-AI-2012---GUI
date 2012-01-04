@@ -6,6 +6,7 @@ using System.IO;
 
 namespace ApelareCelelalteModule
 {
+    // Thread-ul in care se va trata cererea
     public class ClientThread
     {
         private Stream fisierXML;
