@@ -7,7 +7,8 @@ using System.Threading;
 
 namespace ApelareCelelalteModule
 {
-// numele clasei se poate schimba
+    // numele clasei se poate schimba
+    // asta mi-a venit pe moment
     public class ApelareModul
     {
         public int ObtineStatus(Stream fisierXML)
