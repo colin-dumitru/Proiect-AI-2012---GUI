@@ -7,28 +7,15 @@ using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using WebServer.Models;
 
-namespace WebServer.Data
-{
+namespace WebServer.Data {
 
     [Serializable]
-    class DocumentManagerConfig
-    {
-        private int _lastid = 0;
+    class DocumentManagerConfig {
 
-
-        /*numarul folosit la generarea id-urilor unice*/
-        public int UniqueId
-        {
-            get
-            {
-                return (this._lastid++);
-            }
-        }
     }
 
     [Serializable]
-    public class DocumentException : Exception
-    {
+    public class DocumentException : Exception {
         public DocumentException() { }
         public DocumentException(string message) : base(message) { }
         public DocumentException(string message, Exception inner) : base(message, inner) { }
@@ -37,10 +24,9 @@ namespace WebServer.Data
           System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }
     }
-    
 
-    public class DocumentManager : IDocumentManager
-    { 
+
+    public class DocumentManager : IDocumentManager {
         public const String ConfigFile = "config";
         public const String TypeMain = "main";
         public const String TypeSummary = "summary";
@@ -50,19 +36,33 @@ namespace WebServer.Data
         public const int StatusEmpty = 0;
         public const int StatusParsing = 2;
 
+        private IDocumentEntityManager _entityManager = null;
         /*folosit pentru a adauga documente in baza de date*/
-        public IDocumentEntityManager EntityManager { get; set; }
+        public IDocumentEntityManager EntityManager {
+            get {
+                return this._entityManager;
+            }
+            set {
+                if (this._moduleManager != null)
+                    this._moduleManager.EntityManager = value;
+                this._entityManager = value;
+            }
+        }
 
+        /*se va ocupa de apelarea celorlalte module*/
+        private ModuleManager _moduleManager = null;
         /*configuratia managerului*/
-        private DocumentManagerConfig _config = null;        
+        private DocumentManagerConfig _config = null;
 
-        public DocumentManager()
-        {
+        public DocumentManager() {
+            this._moduleManager = new ModuleManager() {
+                EntityManager = this.EntityManager
+            };
+
             /*in constructor deserializam configuratia*/
             Stream stream = null;
 
-            try
-            {
+            try {
                 stream = File.OpenRead(ConfigFile);
                 BinaryFormatter bf = new BinaryFormatter();
                 this._config = bf.Deserialize(stream) as DocumentManagerConfig;
@@ -70,42 +70,31 @@ namespace WebServer.Data
                 if (this._config == null)
                     throw new Exception();
 
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 this._config = new DocumentManagerConfig();
-            }
-            finally
-            {
+            } finally {
                 if (stream != null)
                     stream.Close();
             }
         }
 
-        ~DocumentManager()
-        {
+        ~DocumentManager() {
             /*in constructor deserializam configuratia*/
             Stream stream = null;
 
-            try
-            {
+            try {
                 stream = File.OpenWrite(ConfigFile);
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(stream, this._config);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Console.WriteLine(ex.ToString());
-            }
-            finally
-            {
+            } finally {
                 if (stream != null)
                     stream.Close();
             }
         }
 
-        public int StoreDocument(String fileName, Stream fileStream)
-        {
+        public int StoreDocument(String fileName, Stream fileStream) {
             if (this._config == null || this.EntityManager == null)
                 throw new DocumentException("Configuratie inexistenta");
 
@@ -123,33 +112,25 @@ namespace WebServer.Data
             return doc.Id;
         }
 
-        public String GetDocument(int id)
-        {
+        public String GetDocument(int id) {
             return null;
-           
+
         }
 
-        public String GetDocument(int id, string type)
-        {
+        public String GetDocument(int id, string type) {
             DocumentOutput res = null;
 
-            try
-            {
-                 res = this.EntityManager.GetDocumentOutput(id, type);
-                 if (res == null)
-                     throw new EntityManagerException();
-            }
-            catch (EntityManagerException)
-            {
+            try {
+                res = this.EntityManager.GetDocumentOutput(id, type);
+                if (res == null)
+                    throw new EntityManagerException();
+            } catch (EntityManagerException) {
                 throw new DocumentException("Documentul nu a fost gasit");
             }
 
-            if (res.Status == StatusOK)
-                return res.Document;
-            else
-                return null;
+            return this._moduleManager.ValidateDocumentOutput(res);
         }
 
-        
+
     }
 }

@@ -50,5 +50,10 @@ namespace WebServer.Models {
         /// </summary>
         /// <param name="documentId">Id-ul documentului ce trebuie sters</param>
         void RemoveDocument(int documentId);
+
+        /// <summary>
+        /// Salveaza orice modificari aduse bazei de date.
+        /// </summary>
+        void Save();
     }
 }

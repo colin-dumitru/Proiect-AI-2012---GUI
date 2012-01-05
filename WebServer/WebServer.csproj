@@ -73,6 +73,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadController.cs" />
     <Compile Include="Controllers\XmlResult.cs" />
+    <Compile Include="Data\ModuleManager.cs" />
+    <Compile Include="Data\ModuleWorker.cs" />
     <Compile Include="Data\DocumentManager.cs" />
     <Compile Include="Data\IDocumentManager.cs" />
     <Compile Include="Global.asax.cs">

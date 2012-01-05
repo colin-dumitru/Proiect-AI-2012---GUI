@@ -69,9 +69,6 @@ namespace WebServer.Controllers
             if (id == null)
                 return View("Index", "Home");
 
-
-            /*modelul ce il intorcem*/
-            DocumentResponse ret = new DocumentResponse();
             /*documentul propriuzis*/
             DocumentResponse doc = new DocumentResponse();
 
