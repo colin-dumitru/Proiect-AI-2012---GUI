@@ -104,8 +104,8 @@ namespace WebServer.Data {
             /*adaugam fisierul initial*/
             this.EntityManager.AddDocumentOutput(doc.Id, TypeMain, StatusEmpty, fileStream);
             /*si celalte fisiere goale*/
-            this.EntityManager.AddDocumentOutput(doc.Id, TypeSummary, StatusEmpty, "");
-            this.EntityManager.AddDocumentOutput(doc.Id, TypeTimeline, StatusEmpty, "");
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeSummary, StatusEmpty, fileStream);
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeTimeline, StatusEmpty, fileStream);
 
 
             //returnam id-ul
