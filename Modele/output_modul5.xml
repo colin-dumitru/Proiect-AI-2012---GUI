@@ -1,0 +1,55 @@
+<situations>
+
+    <situation initial_time="24/01/1991:12:40" final_time="24/01/1991:14:30">        
+        <paragraph pageNumber="2"> </paragraph>
+    </situation>
+
+    <situation initial_time="25/01/1991:11:20" final_time="25/01/1991:14:30">
+        <paragraph pageNumber="3"> </paragraph>
+    </situation>
+
+    <situation initial_time="25/01/1991:15:45" final_time="27/01/1991:08:30">
+        <paragraph pageNumber="4"> </paragraph>
+    </situation>
+
+    <situation initial_time="27/01/1991:12:40" final_time="27/01/1991:17:55">
+        <paragraph pageNumber="5"> </paragraph>
+    </situation>
+
+    <situation initial_time="28/01/1991:06:00" final_time="29/01/1991:14:30">
+        <paragraph pageNumber="6"> </paragraph>
+    </situation>
+
+    <situation initial_time="29/01/1991:15:20" final_time="29/01/1991:15:40">
+        <paragraph pageNumber="7"> </paragraph>
+    </situation>
+
+    <situation initial_time="29/01/1991:15:55" final_time="29/01/1991:17:22">
+        <paragraph pageNumber="31"> </paragraph>
+    </situation>
+
+    <situation initial_time="29/01/1991:17:23" final_time="29/01/1991:17:45">
+        <paragraph pageNumber="34"> </paragraph>
+    </situation>
+
+    <situation initial_time="29/01/1991:18:11" final_time="29/01/1991:19:30">
+        <paragraph pageNumber="43"> </paragraph>
+    </situation>
+
+    <situation initial_time="30/01/1991:06:00" final_time="30/01/1991:22:30">
+        <paragraph pageNumber="56"> </paragraph>
+    </situation>
+
+    <situation initial_time="01/02/1991:02:00" final_time="01/02/1991:03:45">
+        <paragraph pageNumber="59"> </paragraph>
+    </situation>
+
+    <situation initial_time="01/02/1991:12:41" final_time="01/02/1991:13:30">
+        <paragraph pageNumber="61"> </paragraph>
+    </situation>
+
+    <situation initial_time="01/02/1991:13:40" final_time="01/02/1991:14:30">
+        <paragraph pageNumber="74"> </paragraph>
+    </situation>
+    
+</situations>

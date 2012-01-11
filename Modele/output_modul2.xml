@@ -1,0 +1,54 @@
+<extraction>
+    <!-- procentajele pentru tipul romanului -->
+    <types>
+        <type name="Romance" chance="0.35574755" />
+        <type name="Fantasy" chance="0.16747507" />
+        <type name="Horror" chance="0.14290991" />
+        <type name="CrimeThriller" chance="0.10510176" />
+        <type name="Classic" chance="0.10464516" />
+        <type name="ActionAdventure" chance="0.07311089" />
+        <type name="Historical" chance="0.025663365" />
+    </types>
+
+    <!-- personajele -->
+    <characters >
+        <character name ="traveller" />
+        <character name ="wife" />
+        <character name ="driver" />
+        <character name ="Sean" />
+        <character name ="waitress" />
+        <character name ="Jane" />
+        <character name ="seller" />
+        <character name ="EM" />
+        <character name ="Liz" />
+        <character name ="Cole" />
+    </characters>
+
+    <!-- locatii -->
+    <locations >
+        <location name ="home" />
+        <location name ="highway" />
+        <location name ="airport" />
+        <location name ="restaurant" />
+        <location name ="store" />
+        <location name ="car" />
+        <location name ="road" />
+        <location name ="bedroom" />
+        <location name ="school" />
+    </locations>
+
+    <relations>
+        <relation character1="traveller" character2="wife" verb="married" />
+        <relation character1="traveller" character2="Sean" verb="friends" />
+        <relation character1="traveller" character2="Jane" verb="friends" />
+        <relation character1="traveller" character2="Liz" verb="friends" />
+
+        <relation character1="driver" character2="seller" verb="enemies" />
+
+        <relation character1="Sean" character2="Liz" verb="lovers" />
+        <relation character1="Sean" character2="wife" verb="friends" />
+        <relation character1="Sean" character2="Jane" verb="friends" />
+
+        <relation character1="Cole" character2="EM" verb="father" />        
+    </relations>
+</extraction>

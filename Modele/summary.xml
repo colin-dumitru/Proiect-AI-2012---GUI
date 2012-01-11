@@ -1,0 +1,56 @@
+<Content>
+    <summay>
+        <name>initial file name</name>
+        <extraction>
+            <!-- tipul romanului -->
+             <type>Romance</type>
+
+            <!-- personajele -->
+            <characters >
+                <character name ="traveller" />
+                <character name ="wife" />
+                <character name ="driver" />
+                <character name ="Sean" />
+                <character name ="waitress" />
+                <character name ="Jane" />
+                <character name ="seller" />
+                <character name ="EM" />
+                <character name ="Liz" />
+                <character name ="Cole" />
+            </characters>
+
+            <!-- locatii -->
+            <locations >
+                <location name ="home" />
+                <location name ="highway" />
+                <location name ="airport" />
+                <location name ="restaurant" />
+                <location name ="store" />
+                <location name ="car" />
+                <location name ="road" />
+                <location name ="bedroom" />
+                <location name ="school" />
+            </locations>
+
+            <relations>
+                <relation character1="traveller" character2="wife" verb="married" />
+                <relation character1="traveller" character2="Sean" verb="friends" />
+                <relation character1="traveller" character2="Jane" verb="friends" />
+                <relation character1="traveller" character2="Liz" verb="friends" />
+
+                <relation character1="driver" character2="seller" verb="enemies" />
+
+                <relation character1="Sean" character2="Liz" verb="lovers" />
+                <relation character1="Sean" character2="wife" verb="friends" />
+                <relation character1="Sean" character2="Jane" verb="friends" />
+
+                <relation character1="Cole" character2="EM" verb="father" />
+            </relations>
+        </extraction>
+        <summarisation>
+            <summary>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec enim nisi, convallis et mattis eget, porttitor et nibh. Sed id elit massa, vel sodales est. Aenean ut eros neque. Donec id blandit nibh. Duis varius dictum eleifend. Nunc nec risus felis. Proin justo tellus, fringilla molestie volutpat id, vulputate porta massa. Nullam a lacus vitae neque convallis hendrerit id sed tellus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquam blandit ullamcorper. In a lectus felis, sollicitudin malesuada ante. Aenean magna ligula, condimentum eget tempor dictum, cursus vulputate turpis. Nam purus dolor, varius vel aliquet non, pretium non arcu. Praesent sit amet dui elit, aliquet tempor ipsum. Aenean mattis, erat at accumsan ullamcorper, arcu enim vulputate nisi, et laoreet urna felis sit amet massa. Nunc ac lectus et turpis auctor aliquam. Maecenas sagittis, lectus et semper iaculis, lectus mi interdum justo, scelerisque sollicitudin tortor ante in diam. Duis commodo arcu eget orci facilisis bibendum. Integer vulputate lorem et dolor euismod volutpat. Nunc sit amet turpis nisi, id ornare leo. Cras nec tincidunt mauris. Nulla facilisi. Sed elementum aliquam diam nec placerat. Phasellus tellus nibh, volutpat luctus vehicula volutpat, consectetur at odio. Curabitur laoreet porta arcu, nec pellentesque ante imperdiet sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin placerat porttitor enim, at molestie ligula tincidunt a. Suspendisse quis mollis mi. Integer ultricies fringilla bibendum. Donec commodo, purus id hendrerit adipiscing, eros eros commodo libero, in egestas justo nibh congue dolor. Fusce in ipsum eu erat tincidunt venenatis sit amet eu metus. Vestibulum nec elementum sem. Maecenas ante nulla, fermentum vel dignissim vel, tristique sed dui. Aenean vitae neque rutrum urna iaculis aliquam. Maecenas dictum lacinia facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin elit eros, imperdiet vel egestas in, consequat et dolor. Sed nec neque at lorem pellentesque convallis at non dui. Aenean porta tincidunt magna ornare ornare. Nulla gravida nibh ut orci suscipit fringilla. Integer sed augue ac purus scelerisque mattis. In commodo nisl porttitor nulla pretium sollicitudin. Maecenas ut auctor elit. Donec quis sem diam, at congue arcu. Nam consectetur auctor vestibulum. Cras nec velit leo. Aliquam eu nulla id eros elementum vulputate. Aliquam erat volutpat. In vitae porttitor lorem. Donec pharetra gravida ipsum at aliquet. Nullam tincidunt pellentesque odio. Ut tristique ultricies eros id mattis. Quisque eleifend, ligula non lacinia posuere, erat neque molestie dolor, vel ullamcorper massa sem vitae eros. Nam pharetra dapibus lacus, a dapibus lorem euismod nec. Suspendisse potenti. Curabitur bibendum ligula vitae diam pharetra vitae pulvinar eros consequat. Praesent fermentum elementum luctus. Nulla eget mauris non velit semper sodales. Sed rutrum elementum pulvinar. Proin nec tortor urna. Ut at ligula vel mauris lacinia mollis. Praesent erat nisi, ultrices vel suscipit et, gravida ac dui. In nec elementum mi. Nulla ultrices nisl ut velit iaculis porta.
+            </summary>
+        </summarisation>
+    </summay>
+</Content>
