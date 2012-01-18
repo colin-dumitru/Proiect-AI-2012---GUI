@@ -10,7 +10,7 @@
 </asp:Content>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div>
-        
-    </div>
+    <script src="/Content/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="/Content/timeline.js" type="text/javascript"></script>
+    <div id="doc"></div>
 </asp:Content>
