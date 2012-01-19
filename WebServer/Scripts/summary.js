@@ -31,10 +31,14 @@ function writeDoc(xml) {
     $("#title h1").text("Summary for „" + title + "”");
 
     $("#novel_title").text(title);
-    $("#novel_information").text(xml.find("type").text());
+    $("#novel_type").text(xml.find("type").text());
 
     xml.find("characters").find("character").each(function () {
-        $("novel_characters").append("<p>" + $(this).text() + "</p>");
+        $("#novel_characters").append("<div>" + $(this).attr("name") + "<div>");
+    });
+
+    xml.find("locations").find("location").each(function () {
+        $("#novel_places").append("<div>" + $(this).attr("name") + "<div>");
     });
 
     $("#novel_summary").text(xml.find("summary").text());

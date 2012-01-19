@@ -19,13 +19,22 @@
             <h1 id="novel_title"> Title </h1>
         </div>
         <div>
-            <h2 id="novel_information">Information</h2>
-            <p id="novel_type">Type</p>
+            <h2>Information</h2>
+            <div>
+                <div>Type</div>
+                <div id="novel_type"></div>
+            </div>
         </div>
 
         <div>
             <h2>Characters</h2>
             <div id="novel_characters">
+            </div>
+        </div>
+
+        <div>
+            <h2>Locations</h2>
+            <div id="novel_places">
             </div>
         </div>
 
