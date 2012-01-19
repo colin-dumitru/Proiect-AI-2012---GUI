@@ -24,21 +24,6 @@ function tryToLoad() {
 }
 
 function loaded(xml) {
-    $("<style>\
-           ul.selectables {padding:0;margin:0;}\
-           ul.selectables li {list-style: none; width:185px; float:left;} \
-           ul.selectables li span {text-align:center; background: #CCE; display:block; -moz-border-radius: 8px; border-radius: 8px; margin:1px; padding:1px 0}\
-           ul.selectables li span:hover {background: #DDF;}\
-           ul.selectables li span.excluded {background: #EEE; color:#CCC}\
-           div.tooltip {background:#CCE; /*width:200px; */padding:5px 5px 15px 5px; -moz-border-radius: 0 10px 10px 10px; border-radius:0 10px 10px 10px;}\
-           div.tooltip h3 {margin-top:0;}\
-           div.tooltip ul {padding:0;margin:0;}\
-           div.tooltip ul li {list-style:none; margin:1px; background:#BBD; padding:1px 3px;}\
-           div.tooltip ul li:hover {background:#DDF}\
-           h2 {margin-top:30px;}\
-           div#situation {min-height:400px}\
-           canvas {margin-top:20px}\
-       </style>").appendTo("head");
     doc.append("<h1>Timeline</h1>");
     doc.append("<h2>Characters</h2>");
     var charUl = $("<ul></ul>").addClass("selectables");

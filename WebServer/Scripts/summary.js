@@ -27,15 +27,15 @@ function tryToLoad() {
 
 function writeDoc(xml) {
     var title = xml.find("name").text();
+
     $("#title h1").text("Summary for „" + title + "”");
-    var doc = $("#doc");
-    doc.append("<h1>" + title + "</h1>");
-    doc.append("<h2>Information</h2>");
-    doc.append("<p>Type: " + xml.find("type").text() + "</p>");
-    doc.append("<h2>Characters</h2>");
+
+    $("#novel_title").text(title);
+    $("#novel_information").text(xml.find("type").text());
+
     xml.find("characters").find("character").each(function () {
-        doc.append("<p>" + $(this).text() + "</p>");
+        $("novel_characters").append("<p>" + $(this).text() + "</p>");
     });
-    doc.append("<h2>Summary</h2>");
-    doc.append("<div id='sum'>" + xml.find("summary").text() + "</div>");
+
+    $("#novel_summary").text(xml.find("summary").text());
 }

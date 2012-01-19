@@ -14,11 +14,9 @@
 <script language="javascript" type="text/javascript" src="js/example1.js"></script>
     <script type="text/javascript">
       var xmlpath = "http://localhost/iuliana/myxml1.xml"
-	  
-	  // AICI TREBUIE SCHIMBATA CALEA
-	  //var xmlpath = "file:///D:/lucru/iuliana/graph_js/myxml1.xml";
       var json= new Array();
 	  var xmlhttp = new XMLHttpRequest();
+	  
       xmlhttp.open("GET", xmlpath, false);
       xmlhttp.setRequestHeader('Content-Type', 'text/xml');
       xmlhttp.send("");
@@ -72,13 +70,8 @@
 		        "id": person1,
 		        "name": person1};
 			}
-			//var person1 = xmlDoc.documentElement.childNodes[i].attributes[0].nodeValue;
-			//var person2 = xmlDoc.documentElement.childNodes[i].attributes[1].nodeValue;
-			//var relationship = xmlDoc.documentElement.childNodes[i].attributes[2].nodeValue;
-			//WriteLine(person1 + " and " + person2 + " are " + relationship);
 		}
 	  }
-	  //document.body.onload = function() { init(json); }
     </script>
 
 

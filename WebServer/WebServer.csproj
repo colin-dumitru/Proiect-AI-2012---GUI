@@ -101,10 +101,10 @@
     <Content Include="App_Data\WebServerDatabase_log.ldf">
       <DependentUpon>WebServerDatabase.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Timeline.css" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\summary.js" />
     <Content Include="Scripts\timeline.js" />
-    <Content Include="Content\timeline.xml" />
     <Content Include="Global.asax" />
     <Content Include="Models\DocumentDataModel.edmx.sql" />
     <Content Include="Views\Home\Interactivity.aspx" />
