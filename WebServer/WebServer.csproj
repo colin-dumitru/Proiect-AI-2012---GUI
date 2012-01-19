@@ -101,7 +101,10 @@
     <Content Include="App_Data\WebServerDatabase_log.ldf">
       <DependentUpon>WebServerDatabase.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Summary.css" />
     <Content Include="Content\Timeline.css" />
+    <Content Include="Scripts\jit-yc.js" />
+    <Content Include="Scripts\jit.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\summary.js" />
     <Content Include="Scripts\timeline.js" />

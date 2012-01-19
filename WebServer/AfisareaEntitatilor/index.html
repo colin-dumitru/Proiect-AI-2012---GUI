@@ -13,7 +13,7 @@
 <!-- Example File -->
 <script language="javascript" type="text/javascript" src="js/example1.js"></script>
     <script type="text/javascript">
-      var xmlpath = "http://localhost/iuliana/myxml1.xml"
+      var xmlpath = "myxml1.xml"
       var json= new Array();
 	  var xmlhttp = new XMLHttpRequest();
 	  
@@ -36,6 +36,7 @@
       function readXML() {
         
 		var persons = new Array();
+		
 		for(var i = 0 ; i < xmlDoc.documentElement.childNodes.length ; i++)
 		{	var b = true;
 			var person1 = xmlDoc.documentElement.childNodes[i].attributes[0].nodeValue;
