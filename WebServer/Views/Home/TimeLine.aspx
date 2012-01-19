@@ -9,8 +9,11 @@
     TimeLine
 </asp:Content>
 
-<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-    <script src="/Content/jquery-1.4.1.min.js" type="text/javascript"></script>
-    <script src="/Content/timeline.js" type="text/javascript"></script>
+<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" runat="server">
+    <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/timeline.js" type="text/javascript"></script>
+</asp:Content>
+
+<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">     
     <div id="doc"></div>
 </asp:Content>

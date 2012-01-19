@@ -17,7 +17,7 @@ function dateStringToDate(dateString) {
 }
 
 function tryToLoad() {
-    $.get("/Content/timeline.xml", function (xmlFile) {
+    $.get("/Get/Timeline/10", function (xmlFile) {
         var xml = $(xmlFile);
         loaded(xml);
     });

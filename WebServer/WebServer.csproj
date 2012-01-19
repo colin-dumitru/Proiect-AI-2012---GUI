@@ -101,9 +101,9 @@
     <Content Include="App_Data\WebServerDatabase_log.ldf">
       <DependentUpon>WebServerDatabase.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\jquery-1.4.1.min.js" />
-    <Content Include="Content\summary.js" />
-    <Content Include="Content\timeline.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\summary.js" />
+    <Content Include="Scripts\timeline.js" />
     <Content Include="Content\timeline.xml" />
     <Content Include="Global.asax" />
     <Content Include="Models\DocumentDataModel.edmx.sql" />
@@ -119,7 +119,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.4.1.js" />
-    <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
