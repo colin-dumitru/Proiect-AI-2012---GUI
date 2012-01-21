@@ -54,7 +54,7 @@ namespace WebServer.Data
 
         private Boolean _CreateSummaryDocument() {
             /*apeleaza modulele de sumarizare extragere de informatii si creaza
-             documentul xml*/
+             documentul xml*/             
 
             /*daca a reusit apelarea modulelor*/
             return false;

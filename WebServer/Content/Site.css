@@ -120,7 +120,7 @@ page width. Or, you can specify an exact pixel width. */
 
 #main
 {
-    padding: 30px 30px 15px 30px;
+    padding: 20px;
     background-color: #F5F5F5;
     margin-bottom: 30px;
     border-radius: 5px;

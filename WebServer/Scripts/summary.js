@@ -43,11 +43,11 @@ function writeDoc(xml) {
     $("#novel_type").text(xml.find("type").text());
 
     xml.find("characters").find("character").each(function () {
-        $("#novel_characters").append("<div>" + $(this).attr("name") + "<div>");
+        $("#novel_characters").append("<div class='enum_item'>" + $(this).attr("name") + "<div>");
     });
 
     xml.find("locations").find("location").each(function () {
-        $("#novel_places").append("<div>" + $(this).attr("name") + "<div>");
+        $("#novel_places").append("<div class='enum_item'>" + $(this).attr("name") + "<div>");
     });
 
     $("#novel_summary").text(xml.find("summary").text());
@@ -159,9 +159,15 @@ function initChars(json) {
                 //count connections
                 var count = 0;
                 node.eachAdjacency(function () { count++; });
-                //display node info in tooltip
-                tip.innerHTML = "<div class=\"tip-title\">" + node.name + "</div>"
-          + "<div class=\"tip-text\"><b>connections:</b> " + count + "</div>";
+
+                var html = "<h4>" + node.name + "</h4><b> connections:</b><ul><li>",
+                 list = [];
+                node.eachAdjacency(function (adj) {
+
+                    list.push(adj.nodeTo.name + " : " + adj.data.relation);
+                });
+                //append connections information
+                tip.innerHTML = html + list.join("</li><li>") + "</li></ul>";
             }
         },
         // Add node events
@@ -188,16 +194,7 @@ function initChars(json) {
             //Add also a click handler to nodes
             onClick: function (node) {
                 if (!node) return;
-                // Build the right column relations list.
-                // This is done by traversing the clicked node connections.
-                var html = "<h4>" + node.name + "</h4><b> connections:</b><ul><li>",
-            list = [];
-                node.eachAdjacency(function (adj) {
-
-                    list.push(adj.nodeTo.name + " --> " + adj.relation);
-                });
-                //append connections information
-                $jit.id('inner-details').innerHTML = html + list.join("</li><li>") + "</li></ul>";
+               
             }
         },
         //Number of iterations for the FD algorithm

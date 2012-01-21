@@ -33,7 +33,7 @@
             </h1>
         </div>
 
-        <div>
+        <div id="information">
             <h2>Information</h2>
             <div>
                 <div>Type</div>
@@ -42,7 +42,7 @@
         </div>       
 
         <div>
-            <div>
+            <div id="characters">
                 <h2>Characters</h2>
                 <div id="novel_characters"></div>
             </div>
@@ -51,17 +51,14 @@
                 <div id="center-container">
                     <div id="infovis"></div>
                 </div>
-                <div id="right-container">
-                    <div id="inner-details"> </div>
-                </div>
                 <div id="log"></div>
             </div>
 
-            <div>
+            <div id="locations">
                 <h2> Locations</h2>
                 <div id="novel_places"></div>
             </div>
-            <div>
+            <div id="summary">
                 <h2>Summary</h2>
                 <div id="novel_summary"></div>
             </div>
