@@ -1,11 +1,17 @@
 ﻿var doc;
-var canvas;
-var context;
-var canvasWidth = 740;
-var canvasHeight = 100;
-var currentSituation = null;
+var documentId;
+var clusters = [4, 6, 8, 10, 14, 18, 24, 30, 44];
+var clusterIndex = 1;
+var toolTip = null;
 
 $(document).ready(function () {
+    $("body").mousemove(function (e) {
+        window.mouseXPos = e.pageX;
+        window.mouseYPos = e.pageY;
+    });
+
+    var split = document.URL.split("/");
+    documentId = split[split.length - 1];
     doc = $("#doc");
     tryToLoad();
 });
@@ -17,7 +23,7 @@ function dateStringToDate(dateString) {
 }
 
 function tryToLoad() {
-    $.get("/Get/Timeline/10", function (xmlFile) {
+    $.get("/Get/Timeline/" + documentId, function (xmlFile) {
         var xml = $(xmlFile);
         loaded(xml);
     });
@@ -48,13 +54,25 @@ function loaded(xml) {
             jThis.addClass("excluded");
     });
 
-    canvas = $("<canvas></canvas>").attr({ id: "canv", width: canvasWidth, height: canvasHeight });
-    doc.append(canvas);
+    doc.append("<h2>Situation clusters</h2>");
+    var bigger = $("<a class='clustersBtn nosel'>−</span>").click(function () {
+        if (clusterIndex + 1 < clusters.length) {
+            clusterIndex++;
+            drawSituations(situations, clusters[clusterIndex]);
+        }
+    });
+    var smaller = $("<a class='clustersBtn nosel'>+</span>").click(function () {
+        if (clusterIndex - 1 >= 0) {
+            clusterIndex--;
+            drawSituations(situations, clusters[clusterIndex]);
+        }
+    });
+    doc.append(bigger);
+    doc.append(smaller);
+    doc.append($("<div></div>").css({ clear: "both" }));
+    doc.append("<div id='canvasDiv'></div>");
 
     doc.append("<div id='situation'></div>");
-
-
-    context = canvas[0].getContext("2d");
 
     var situations = new Array();
 
@@ -73,14 +91,10 @@ function loaded(xml) {
 
     situations.sort(compare);
 
-    context.fillStyle = "#DDDDDD";
-    context.fillRect(0, 0, canvasWidth, canvasHeight);
-    context.fillStyle = "#333355";
-
-    drawSituations(situations, 8);
+    drawSituations(situations, clusters[clusterIndex]);
 }
 
-function drawCircle(x, y, r) {
+function drawCircle(context, x, y, r) {
     context.beginPath();
     context.arc(x, y, r, 0, Math.PI * 2, true);
     context.closePath();
@@ -88,6 +102,23 @@ function drawCircle(x, y, r) {
 }
 
 function drawSituations(situations, intervals) {
+    if (toolTip != null)
+        toolTip.remove();
+
+    var canvasDiv = $("#canvasDiv");
+    canvasDiv.empty();
+    canvasDiv.css({ padding: "10px" });
+    var canvasWidth = canvasDiv.width();
+    var canvasHeight = Math.ceil(canvasWidth / intervals);
+
+    var canvas = $("<canvas></canvas>").attr({ id: "canv", width: canvasWidth, height: canvasHeight });
+    canvasDiv.append(canvas);
+    context = canvas[0].getContext("2d");
+
+    //context.fillStyle = "#FFF";
+    //context.fillRect(0, 0, canvasWidth, canvasHeight);
+    context.fillStyle = "#383738";
+
     var min = situations[0].initialTime.getTime();
     var max = situations[situations.length - 1].finalTime.getTime();
     var timePeriod = (max - min) / intervals;
@@ -114,36 +145,42 @@ function drawSituations(situations, intervals) {
             continue;
         var ratio = Math.sqrt(interval[i].length / Math.PI) / Math.sqrt(maxSits / Math.PI);
         radius[i] = ratio * h;
-        drawCircle(i * canvasPeriod + h, h, h * ratio);
+        drawCircle(context, i * canvasPeriod + h, h, h * ratio);
     }
 
     var currentElement = null;
 
-    canvas.mousemove(function (e) {
+    var getCurrentCluster = function () {
         var off = canvas.offset();
-        var x = e.pageX - off.left;
-        var y = e.pageY - off.top;
+        var x = window.mouseXPos - off.left;
+        var y = window.mouseYPos - off.top;
         var currentInterval = Math.floor(x / canvasPeriod);
         var centerX = currentInterval * canvasPeriod + h;
         var centerY = h;
         var distance = Math.sqrt(Math.pow(centerX - x, 2) + Math.pow(centerY - y, 2));
 
-        if (distance <= radius[currentInterval]) {
-            if (currentElement != currentInterval) {
-                destroyTooltip();
-                currentElement = currentInterval;
-                createTooltip(off.left + centerX, off.top + centerY);
-            } else {
-                //moveTooltip(off.left + x + 2, off.top + y + 2);
-            }
-        } else {
+        if (distance <= radius[currentInterval])
+            return currentInterval;
+        return null;
+    }
+
+    canvas.mousemove(function (e) {
+        var theNewOne = getCurrentCluster();
+        if (theNewOne == null) {
             destroyTooltip();
             currentElement = null;
         }
+        else if (theNewOne != currentElement) {
+            destroyTooltip();
+            currentElement = theNewOne;
+            createTooltip(currentElement);
+        }
     });
 
-    var toolTip;
-    var createTooltip = function (x, y) {
+    var createTooltip = function (currentInterval) {
+        var off = canvas.offset();
+        var x = off.left + currentInterval * canvasPeriod + h;
+        var y = off.top + h;
         toolTip = $("<div></div>").addClass("tooltip");
         doc.append(toolTip);
         toolTip.css({
@@ -158,41 +195,42 @@ function drawSituations(situations, intervals) {
         var ul = $("<ul></ul>");
         for (var i = 0; i < interval[currentElement].length; i++) {
             var xml = interval[currentElement][i].xml;
-            var name = xml.find("name").text();
-            var li = $("<li>" + name + "</li>");
+            var li = $("<li>" + xml.find("name").text() + "</li>");
             ul.append(li);
-            li.hover(function () {
-                // TODO: E greșit aici. Repar mai târziu.
-                situationDiv.empty();
-                situationDiv.append("<h2>" + $(this).text() + "</h2>");
+            li.click(function (xml) {
+                return function () {
+                    situationDiv.empty();
+                    situationDiv.append("<h2>Situation: " + xml.find("name").text() + "</h2>");
 
-                var parag = $("<p></p>");
-                var addThings = function (elem, name) {
-                    var p = name + ": ";
-                    xml.find(elem).each(function (i) {
-                        p += ((i > 0) ? ", " : "") + "<span>" + $(this).text() + "</span>";
-                    });
-                    parag.append(p + "<br/>");
-                };
-                addThings("player", "Players");
-                addThings("object", "Objects");
-                addThings("event", "Events");
-                addThings("keyword", "Keywords");
-                situationDiv.append(parag);
-                situationDiv.append("<p>" + xml.find("paragraph").text() + "</p>");
-            });
+                    var parag = $("<p></p>");
+                    var addThings = function (elem, name) {
+                        var p = "<strong>" + name + ":</strong> ";
+                        xml.find(elem).each(function (i) {
+                            p += ((i > 0) ? ", " : "") + "<span>" + $(this).text() + "</span>";
+                        });
+                        parag.append(p + "<br/>");
+                    };
+                    addThings("player", "Players");
+                    addThings("object", "Objects");
+                    addThings("event", "Events");
+                    addThings("keyword", "Keywords");
+                    situationDiv.append(parag);
+                    var paragraph = xml.find("paragraph");
+                    situationDiv.append("<p><strong>From page " + paragraph.attr("pageNumber")
+                            + ":</strong> " + paragraph.text() + "</p>");
+                }
+            } (xml));
         }
         toolTip.append(ul);
-
+        toolTip.mouseenter(function () {
+            toolTip.mouseleave(function () {
+                if (getCurrentCluster() == null)
+                    destroyTooltip();
+            });
+        });
     }
     var destroyTooltip = function () {
         if (toolTip)
             toolTip.remove();
-    }
-    var moveTooltip = function (x, y) {
-        toolTip.css({
-            top: y + "px",
-            left: x + "px"
-        });
     }
 }
