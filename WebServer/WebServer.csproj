@@ -38,9 +38,13 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -97,6 +101,13 @@
     <Content Include="App_Data\WebServerDatabase_log.ldf">
       <DependentUpon>WebServerDatabase.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Summary.css" />
+    <Content Include="Content\Timeline.css" />
+    <Content Include="Scripts\jit-yc.js" />
+    <Content Include="Scripts\jit.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\summary.js" />
+    <Content Include="Scripts\timeline.js" />
     <Content Include="Global.asax" />
     <Content Include="Models\DocumentDataModel.edmx.sql" />
     <Content Include="Views\Home\Interactivity.aspx" />
@@ -111,7 +122,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.4.1.js" />
-    <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

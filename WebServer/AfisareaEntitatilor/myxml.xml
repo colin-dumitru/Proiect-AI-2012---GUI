@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relations>
+<relation character1="traveller" character2="wife" verb="married" />
+<relation character1="traveller" character2="Sean" verb="friends" />
+<relation character1="traveller" character2="Jane" verb="friends" />
+<relation character1="traveller" character2="Liz" verb="friends" />
+
+<relation character1="driver" character2="seller" verb="enemies" />
+
+<relation character1="Sean" character2="Liz" verb="lovers" />
+<relation character1="Sean" character2="wife" verb="friends" />
+<relation character1="Sean" character2="Jane" verb="friends" />
+
+<relation character1="Cole" character2="EM" verb="father" />
+</relations>

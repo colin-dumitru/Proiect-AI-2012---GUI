@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>Parsing XML in Javascript</title>
+	<!-- CSS Files -->
+<link type="text/css" href="css/base.css" rel="stylesheet" />
+<link type="text/css" href="css/ForceDirected.css" rel="stylesheet" />
+
+<!--[if IE]><script language="javascript" type="text/javascript" src="../../Extras/excanvas.js"></script><![endif]-->
+
+<!-- JIT Library File -->
+<script language="javascript" type="text/javascript" src="js/jit.js"></script>
+
+<!-- Example File -->
+<script language="javascript" type="text/javascript" src="js/example1.js"></script>
+    <script type="text/javascript">
+      var xmlpath = "myxml1.xml"
+      var json= new Array();
+	  var xmlhttp = new XMLHttpRequest();
+	  
+      xmlhttp.open("GET", xmlpath, false);
+      xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+      xmlhttp.send("");
+      xmlDoc = xmlhttp.responseXML;
+      readXML();
+      
+	  function WriteLine(input)
+	  {
+		document.write(input + "<br>");
+	  }
+	  
+	  function f()
+	  {
+		WriteLine("Merge");
+	  }
+	  
+      function readXML() {
+        
+		var persons = new Array();
+		
+		for(var i = 0 ; i < xmlDoc.documentElement.childNodes.length ; i++)
+		{	var b = true;
+			var person1 = xmlDoc.documentElement.childNodes[i].attributes[0].nodeValue;
+			for (var k =0; k< persons.length; k++) {
+				if (person1 == persons[k]) {
+					b = false;
+				}
+			}
+			if (b) {
+			persons[persons.length] = person1;
+			var adjacencies = new Array();
+			
+			for(var j = 0 ; j < xmlDoc.documentElement.childNodes.length ; j++){
+				var person1Aux = xmlDoc.documentElement.childNodes[j].attributes[0].nodeValue;
+				
+				if ( person1 == person1Aux ) {
+					var person2 = xmlDoc.documentElement.childNodes[j].attributes[1].nodeValue;
+					var rel = xmlDoc.documentElement.childNodes[j].attributes[2].nodeValue;
+					adjacencies[adjacencies.length] = { "nodeTo": person2,
+				              							"nodeFrom": person1,
+														"data": {"$color": "#557EAA",
+																"relation": rel }};
+				}
+			}
+			 
+			json[json.length] = {"adjacencies" : adjacencies,
+					"data": {
+		          "$color": "#416D9C",
+		          "$type": "square",
+		          "$dim": 10
+		        },
+		        "id": person1,
+		        "name": person1};
+			}
+		}
+	  }
+    </script>
+
+
+  </head>
+<body onload=" init(json)">
+<div id="container">
+
+
+
+<div id="center-container">
+    <div id="infovis"></div>    
+</div>
+
+<div id="right-container">
+
+<div id="inner-details"></div>
+
+</div> 
+
+<div id="log"></div>
+</div>
+</body>
+</html>
