@@ -49,6 +49,7 @@ h1, h2, h3, h4, h5, h6
 
 h1
 {
+    color: #567;
     font-size: 2em;
     padding-bottom: 0;
     margin-bottom: 0;
@@ -329,4 +330,31 @@ div#title
 .tri-state
 {
     width: 6em;
+}
+
+#upload
+{
+    margin: 5px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px #ddd;
+    border-radius: 5px;
+    background: #FFF;
+}
+
+#upload > .submit 
+{
+    float: right;
+    background-image: linear-gradient(bottom, rgb(102,100,100) 0%, rgb(112,112,112) 69%);
+    background-image: -o-linear-gradient(bottom, rgb(102,100,100) 0%, rgb(112,112,112) 69%);
+    background-image: -moz-linear-gradient(bottom, rgb(102,100,100) 0%, rgb(112,112,112) 69%);
+    background-image: -webkit-linear-gradient(bottom, rgb(102,100,100) 0%, rgb(112,112,112) 69%);
+    background-image: -ms-linear-gradient(bottom, rgb(102,100,100) 0%, rgb(112,112,112) 69%);
+    color: #EEE;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#upload > .submit:hover 
+{
+    color: #FEE;
 }

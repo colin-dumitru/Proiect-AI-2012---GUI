@@ -1,0 +1,50 @@
+﻿.container 
+{
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #DDD;
+}
+
+#answers 
+{
+    height: 400px;
+    overflow: auto;
+    background-color: #fff;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.input_container
+{
+    padding: 5px;
+    background-color: #777;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.input_container > button 
+{
+    float: right;
+    background-color: #EEE;
+    color: #000;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.input_container > input
+{
+    background-color: #EEE;
+    color: #000;
+    font-size: 15px;
+    border-radius: 5px;
+    width: 670px;
+}
+
+.answer
+{
+    color: #58A;
+}
+
+.question 
+{
+    color: #AAA;
+}

@@ -1,8 +1,11 @@
 ﻿var doc;
 var documentId;
 var clusters = [4, 6, 8, 10, 14, 18, 24, 30, 44];
-var clusterIndex = 1;
+var clusterIndex = 4;
 var toolTip = null;
+var situations;
+var excludedPlayers = new Object();
+var excludedPlaces = new Object();
 
 $(document).ready(function () {
     $("body").mousemove(function (e) {
@@ -32,36 +35,54 @@ function tryToLoad() {
 function loaded(xml) {
     doc.append("<h1>Timeline</h1>");
     doc.append("<h2>Characters</h2>");
-    var charUl = $("<ul></ul>").addClass("selectables");
+    var charUl = $("<ul></ul>").attr("id", "playerList").addClass("selectables nosel");
     xml.find("characters").find("character").each(function () {
-        charUl.append("<li><span>" + $(this).attr("name") + "</span></li>");
+        var name = $(this).attr("name");
+        charUl.append("<li><span>" + name + "</span></li>");
+        excludedPlayers[name] = false;
     });
     doc.append(charUl);
     doc.append($("<div></div>").css({ clear: "both" }));
     doc.append("<h2>Locations</h2>");
-    var locUl = $("<ul></ul>").addClass("selectables");
+    var locUl = $("<ul></ul>").attr("id", "placeList").addClass("selectables nosel");
     xml.find("locations").find("location").each(function () {
         locUl.append("<li><span>" + $(this).attr("name") + "</span></li>");
     });
     doc.append(locUl);
     doc.append($("<div></div>").css({ clear: "both" }));
 
-    $(".selectables span").click(function () {
+    $("#playerList span").click(function () {
         var jThis = $(this);
+
         if (jThis.hasClass("excluded"))
             jThis.removeClass("excluded");
         else
             jThis.addClass("excluded");
+
+        excludedPlayers[jThis.text()] = jThis.hasClass("excluded");
+        drawSituations(situations, clusters[clusterIndex], clusterIndex);
+    });
+
+    $("#placeList span").click(function () {
+        var jThis = $(this);
+
+        if (jThis.hasClass("excluded"))
+            jThis.removeClass("excluded");
+        else
+            jThis.addClass("excluded");
+
+        excludedPlaces[jThis.text()] = jThis.hasClass("excluded");
+        drawSituations(situations, clusters[clusterIndex], clusterIndex);
     });
 
     doc.append("<h2>Situation clusters</h2>");
-    var bigger = $("<a class='clustersBtn nosel'>−</span>").click(function () {
+    var bigger = $("<a class='clustersBtn nosel'>+</span>").click(function () {
         if (clusterIndex + 1 < clusters.length) {
             clusterIndex++;
             drawSituations(situations, clusters[clusterIndex], clusterIndex);
         }
     });
-    var smaller = $("<a class='clustersBtn nosel'>+</span>").click(function () {
+    var smaller = $("<a class='clustersBtn nosel'>-</span>").click(function () {
         if (clusterIndex - 1 >= 0) {
             clusterIndex--;
             drawSituations(situations, clusters[clusterIndex], clusterIndex);
@@ -74,13 +95,31 @@ function loaded(xml) {
 
     doc.append("<div id='situation'></div>");
 
-    var situations = new Array();
+    situations = new Array();
+
+    var getAsArray = function (xml, name) {
+        var ret = new Array();
+        xml.find(name + "s").find(name).each(function () {
+            ret.push($(this).text());
+        });
+        return ret;
+    };
 
     xml.find("situation").each(function () {
         var jThis = $(this);
-        var initialTime = dateStringToDate(jThis.attr("initial_time"));
-        var finalTime = dateStringToDate(jThis.attr("final_time"));
-        situations.push({ "initialTime": initialTime, "finalTime": finalTime, "xml": jThis })
+        var paragraph = jThis.find("paragraph");
+        situations.push({
+            "initialTime": dateStringToDate(jThis.attr("initial_time")),
+            "finalTime": dateStringToDate(jThis.attr("final_time")),
+            "name": jThis.find("name").text(),
+            "players": getAsArray(jThis, "player"),
+            "objects": getAsArray(jThis, "object"),
+            "events": getAsArray(jThis, "event"),
+            "keywords": getAsArray(jThis, "keyword"),
+            "places": getAsArray(jThis, "place"),
+            "pageNumber": paragraph.attr("pageNumber"),
+            "paragraph": paragraph.text()
+        });
     });
 
     var compare = function (a, b) {
@@ -101,25 +140,18 @@ function drawCircle(context, x, y, r) {
     context.fill();
 }
 
-function drawSituations(situations, intervals, scale) {
+function drawSituations(situations, intervals, clusterIndex) {
     if (toolTip != null)
         toolTip.remove();
 
     var canvasDiv = $("#canvasDiv");
     canvasDiv.empty();
-    canvasDiv.css({ padding: "10px" });
-    //var canvasWidth = canvasDiv.width();
-    //var canvasHeight = Math.ceil(canvasWidth / intervals);
-    var canvasWidth = canvasDiv.width() * scale;
-    var canvasHeight = canvasDiv.height();
+    var canvasWidth = canvasDiv.width() * (clusterIndex + 1);
+    var canvasHeight = canvasDiv.height() - 20;
 
     var canvas = $("<canvas></canvas>").attr({ id: "canv", width: canvasWidth, height: canvasHeight });
     canvasDiv.append(canvas);
     context = canvas[0].getContext("2d");
-
-    //context.fillStyle = "#FFF";
-    //context.fillRect(0, 0, canvasWidth, canvasHeight);
-    context.fillStyle = "#383738";
 
     var min = situations[0].initialTime.getTime();
     var max = situations[situations.length - 1].finalTime.getTime();
@@ -131,8 +163,17 @@ function drawSituations(situations, intervals, scale) {
         interval[i] = new Array();
 
     for (var i = 0; i < situations.length; i++) {
-        var place = Math.floor((situations[i].initialTime.getTime() - min) / timePeriod);
-        interval[place].push(situations[i]);
+        var permitted = true;
+        for (var j = 0; j < situations[i].players.length; j++)
+            if (excludedPlayers[situations[i].players[j]])
+                permitted = false;
+        for (var j = 0; j < situations[i].places.length; j++)
+            if (excludedPlaces[situations[i].places[j]])
+                permitted = false;
+        if (permitted) {
+            var place = Math.floor((situations[i].initialTime.getTime() - min) / timePeriod);
+            interval[place].push(situations[i]);
+        }
     }
 
     var maxSits = 0;
@@ -140,14 +181,26 @@ function drawSituations(situations, intervals, scale) {
         if (interval[i].length > maxSits)
             maxSits = interval[i].length;
 
-    var h = canvasPeriod / 2;
+    var h = canvasHeight / 2;
+
+    // The arrow.
+    context.fillStyle = "#888";
+    context.fillRect(0, h - 0.5, canvasWidth - 5, 1);
+    context.beginPath();
+    context.moveTo(canvasWidth, h);
+    context.lineTo(canvasWidth - 6, h - 3);
+    context.lineTo(canvasWidth - 6, h + 3);
+    context.fill();
+
+    context.fillStyle = "#383738";
+
     var radius = new Array(interval.length);
     for (var i = 0; i < interval.length; i++) {
         if (interval[i].length == 0)
             continue;
         var ratio = Math.sqrt(interval[i].length / Math.PI) / Math.sqrt(maxSits / Math.PI);
-        radius[i] = ratio * h;
-        drawCircle(context, i * canvasPeriod + h, h, h * ratio);
+        radius[i] = ratio * h / 2;
+        drawCircle(context, i * canvasPeriod + h, h, h * ratio / 2);
     }
 
     var currentElement = null;
@@ -196,32 +249,26 @@ function drawSituations(situations, intervals, scale) {
         toolTip.append("<h3>Situations:</h3>");
         var ul = $("<ul></ul>");
         for (var i = 0; i < interval[currentElement].length; i++) {
-            var xml = interval[currentElement][i].xml;
-            var li = $("<li>" + xml.find("name").text() + "</li>");
+            var sit = interval[currentElement][i];
+            var li = $("<li>" + sit.name + "</li>");
             ul.append(li);
-            li.click(function (xml) {
+            li.click(function (sit) {
                 return function () {
                     situationDiv.empty();
-                    situationDiv.append("<h2>Situation: " + xml.find("name").text() + "</h2>");
+                    situationDiv.append("<h2>Situation: " + sit.name + "</h2>");
 
                     var parag = $("<p></p>");
-                    var addThings = function (elem, name) {
-                        var p = "<strong>" + name + ":</strong> ";
-                        xml.find(elem).each(function (i) {
-                            p += ((i > 0) ? ", " : "") + "<span>" + $(this).text() + "</span>";
-                        });
-                        parag.append(p + "<br/>");
-                    };
-                    addThings("player", "Players");
-                    addThings("object", "Objects");
-                    addThings("event", "Events");
-                    addThings("keyword", "Keywords");
+                    var pos = ["Players", "Objects", "Events", "Places", "Keywords"];
+                    pos.forEach(function (name) {
+                        parag.append("<strong>" + name + ":</strong> " +
+                                sit[name.toLowerCase()].join(", ") + "<br/>");
+                    });
+
                     situationDiv.append(parag);
-                    var paragraph = xml.find("paragraph");
-                    situationDiv.append("<p><strong>From page " + paragraph.attr("pageNumber")
-                            + ":</strong> " + paragraph.text() + "</p>");
+                    situationDiv.append("<p><strong>From page " + sit.pageNumber
+                            + ":</strong> " + sit.paragraph + "</p>");
                 }
-            } (xml));
+            } (sit));
         }
         toolTip.append(ul);
         toolTip.mouseenter(function () {

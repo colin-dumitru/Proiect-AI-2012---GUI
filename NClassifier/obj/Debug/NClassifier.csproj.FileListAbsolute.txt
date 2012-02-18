@@ -1,0 +1,5 @@
+D:\My Work\C#\Ai\Proiect-AI-2012---GUI\NClassifier\bin\Debug\NClassifier.dll
+D:\My Work\C#\Ai\Proiect-AI-2012---GUI\NClassifier\bin\Debug\NClassifier.pdb
+D:\My Work\C#\Ai\Proiect-AI-2012---GUI\NClassifier\obj\Debug\ResolveAssemblyReference.cache
+D:\My Work\C#\Ai\Proiect-AI-2012---GUI\NClassifier\obj\Debug\NClassifier.dll
+D:\My Work\C#\Ai\Proiect-AI-2012---GUI\NClassifier\obj\Debug\NClassifier.pdb

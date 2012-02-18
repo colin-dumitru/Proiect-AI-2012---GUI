@@ -5,11 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using WebServer.Models;
 using WebServer.Data;
+using WebServer.ModelView;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
 
 namespace WebServer.Controllers
 {
     public class GetController : Controller
     {
+        const String ROOT = @"C:\lib";
+
+        private static Dictionary<int, Process> _serverQA = new Dictionary<int, Process>();   
+
         private IDocumentManager _documentManager = null;
         private IDocumentEntityManager _entityManager = null;
         // ------------------------------------------------------------------------------------------
@@ -96,7 +104,67 @@ namespace WebServer.Controllers
         /// <param name="question">Intrebarea careia trebuie sa ii gasim raspunsul.</param>
         public ActionResult Answer(int? id, String question)
         {
-            return View();
+            //this._StartServer(id ?? -1);
+            
+
+            return Json(new AnswerModelView() { Answer=this._Ask(id ?? -1, question) });
+        }
+        //------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------
+        private String _Ask(int id, String question) {
+            String path = Directory.GetCurrentDirectory() + "\\" + id.ToString();
+
+            using (Stream stream = new FileStream(path + "\\in.txt", FileMode.Create, FileAccess.Write)) {
+                byte[] buffer = Encoding.UTF8.GetBytes(question);
+                stream.Write(buffer, 0, buffer.Length);
+            }
+
+            /*conf*/
+            String args = " -jar modulQA.jar ask \"" + path + "\\in.txt\" \"" + path + "\\out.txt\"";
+
+            Process confProcess = Process.Start(new ProcessStartInfo("java", args) {
+                WorkingDirectory = ROOT + "\\qa\\clientQA"
+            });
+
+            confProcess.WaitForExit();
+
+            using (Stream stream = new FileStream(path + "\\out.txt", FileMode.Open, FileAccess.Read)) {
+                return new StreamReader(stream).ReadToEnd();
+            }
+
+            //return "No answer";
+            
+        }
+        //------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------
+        private void _StartServer(int id) {
+            if(_serverQA.ContainsKey(id))
+                return;
+
+            String path = Directory.GetCurrentDirectory() + "\\" + id.ToString();
+
+            /*daca nu exista resutatele xml, le cream*/
+            this._documentManager.GetDocument(id, DocumentManager.TypeSummary);
+            this._documentManager.GetDocument(id, DocumentManager.TypeTimeline);
+
+            /*pornim procesul*/
+            String args = " -jar JavaAIParser.jar";
+
+            Process infoProcess = Process.Start(new ProcessStartInfo("java", args) {
+                WorkingDirectory = ROOT + "\\qa\\serverQA"
+            });
+
+            _serverQA[id] = infoProcess;
+
+            /*conf*/
+            args = " -jar modulQA.jar book \"" +
+                path + "\\info.xml\" \"" +
+                path + "\\summ.xml\" \"" + 
+                path + "\\sit.xml\"";
+
+            Process confProcess = Process.Start(new ProcessStartInfo("java", args) {
+                WorkingDirectory = ROOT + "\\qa\\clientQA"
+            });
         }
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
