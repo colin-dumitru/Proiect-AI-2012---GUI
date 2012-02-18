@@ -58,3 +58,5 @@ D:\My Work\C#\Ai\Proiect-AI-2012---GUI\WebServer\bin\WebServer.pdb
 D:\My Work\C#\Ai\Proiect-AI-2012---GUI\WebServer\obj\Debug\ResolveAssemblyReference.cache
 D:\My Work\C#\Ai\Proiect-AI-2012---GUI\WebServer\obj\Debug\WebServer.dll
 D:\My Work\C#\Ai\Proiect-AI-2012---GUI\WebServer\obj\Debug\WebServer.pdb
+D:\My Work\C#\Ai\Proiect-AI-2012---GUI\WebServer\bin\NClassifier.dll
+D:\My Work\C#\Ai\Proiect-AI-2012---GUI\WebServer\bin\NClassifier.pdb

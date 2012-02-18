@@ -6,6 +6,7 @@ using System.IO;
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using WebServer.Models;
+using System.Text.RegularExpressions;
 
 namespace WebServer.Data {
 
@@ -101,11 +102,13 @@ namespace WebServer.Data {
             /*adaugam un document nou ce va contine fisierele propriuzise*/
             Document doc = this.EntityManager.CreateDocument(fileName);
 
+            String text = Regex.Replace(new StreamReader(fileStream).ReadToEnd(), @"[^A-Za-z0-9.,-_\!\?:\n\t ]+", "");
+            //String text = new StreamReader(fileStream).ReadToEnd();
             /*adaugam fisierul initial*/
-            this.EntityManager.AddDocumentOutput(doc.Id, TypeMain, StatusEmpty, fileStream);
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeMain, StatusEmpty, text);
             /*si celalte fisiere goale*/
-            this.EntityManager.AddDocumentOutput(doc.Id, TypeSummary, StatusEmpty, fileStream);
-            this.EntityManager.AddDocumentOutput(doc.Id, TypeTimeline, StatusEmpty, fileStream);
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeSummary, StatusEmpty, text);
+            this.EntityManager.AddDocumentOutput(doc.Id, TypeTimeline, StatusEmpty, text);
 
 
             //returnam id-ul

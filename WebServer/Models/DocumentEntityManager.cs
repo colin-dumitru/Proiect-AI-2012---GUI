@@ -83,7 +83,7 @@ namespace WebServer.Models {
         //------------------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------
 
-        public DocumentOutput AddDocumentOutput(int documentId, string type, int status, string file) {
+        public DocumentOutput AddDocumentOutput(int documentId, string type, int status, string text) {
             if (this._dbContainer == null)
                 throw new EntityManagerException("Nu suntem conectati la baza de date!");
 
@@ -99,13 +99,19 @@ namespace WebServer.Models {
             /*verificam daca mai sunt alte fisiere pentru acelasi document id cu tipul specificat*/
             List<DocumentOutput> rezOut = (from d in this._dbContainer.DocumentOutputs
                                         where d.DocumentId == documentId && d.Type == type
-                                        select d).ToList();                                                    
-            if (rezOut.Count > 0)
-                throw new EntityManagerException("Mai exista si alte fisiere cu acelasi tip."); 
+                                        select d).ToList();
+
+            /*daca mai exista alt fisier cu acelasi tip, il modificam pe acela*/
+            if (rezOut.Count > 0) {
+                rezOut[0].Document = text;
+                rezOut[0].Status = status;
+                return rezOut[0];
+            } 
+                
 
             DocumentOutput ret = new DocumentOutput() {
                 DocumentId = documentId,
-                Document = file,
+                Document = text,
                 Status = status,
                 Type = type
             };
@@ -136,7 +142,7 @@ namespace WebServer.Models {
                                            where d.DocumentId == documentId && d.Type == type
                                            select d).ToList();
             if (rezOut.Count == 0)
-                throw new EntityManagerException("Mai exista si alte fisiere cu acelasi tip.");
+                throw new EntityManagerException("Nu exista un document cu acest tip.");
 
             return rezOut[0];
             

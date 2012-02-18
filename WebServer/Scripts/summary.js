@@ -5,7 +5,7 @@ var json = new Array(); ;
 
 $(document).ready(function () {
     var split = document.URL.split("/");
-    documentId = split[split.length - 1];
+    documentId = parseInt(split[split.length - 1]);
     $("#loading").css("display", "block");
     $("#loading").text("Document loading...");
     $("#doc").css("display", "none");
@@ -56,22 +56,33 @@ function writeDoc(xml) {
     var persons = new Array();
 
     xml.find("characters").find("character").each(function () {
-        persons.push($(this).attr("name"));
+        persons.push($.trim($(this).attr("name")));
     });
 
     for (var i = 0; i < persons.length; i++) {
         var adjacencies = new Array();
 
         xml.find("relations").find("relation").each(function () {
-            if ($(this).attr("character1") == persons[i])
+            if ($.trim($(this).attr("character1")) == $.trim(persons[i]))
                 adjacencies.push(
-                {   "nodeTo": $(this).attr("character2"),
-                    "nodeFrom": $(this).attr("character1"),
+                {   "nodeTo": $.trim($(this).attr("character2")),
+                    "nodeFrom": $.trim($(this).attr("character1")),
                     "data": 
                     {   "$color": "#557EAA",
                         "relation": $(this).attr("verb")
                     }
                 });
+
+            if ($.trim($(this).attr("character2")) == $.trim(persons[i]))
+                    adjacencies.push(
+                {   "nodeFrom": $.trim($(this).attr("character2")),
+                    "nodeTo": $.trim($(this).attr("character1")),
+                    "data":
+                    { "$color": "#557EAA",
+                        "relation": $(this).attr("verb")
+                    }
+                });
+
         });
 
 

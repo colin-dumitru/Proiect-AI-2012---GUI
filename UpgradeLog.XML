@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="WebServer">
+</Property><Property Name="Solution File" Value="D:\My Work\C#\Ai\Proiect-AI-2012---GUI\WebServer.sln">
+</Property><Property Name="Date" Value="Monday, January 30, 2012">
+</Property><Property Name="Time" Value="23:04:51 PM">
+</Property></Properties><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\NClassifier.csproj" Description="Project file successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\NClassifier.csproj">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\AbstractClassifier.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\AbstractClassifier.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\AssemblyInfo.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\BayesianClassifier.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\BayesianClassifier.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\ICategorizedWordsDataSource.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\ICategorizedWordsDataSource.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\IDbConnectionManager.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\IDbConnectionManager.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\IWordsDataSource.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\IWordsDataSource.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\OdbcConnectionManager.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\OdbcConnectionManager.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\OdbcWordsDataSource.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\OdbcWordsDataSource.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\SimpleWordsDataSource.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\SimpleWordsDataSource.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\WordProbability.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\WordProbability.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Bayesian\WordsDataSourceException.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Bayesian\WordsDataSourceException.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\ClassifierException.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\ClassifierException.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\CustomizableStopWordProvider.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\CustomizableStopWordProvider.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\DefaultStopWordProvider.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\DefaultStopWordProvider.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\DefaultTokenizer.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\DefaultTokenizer.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\ICategorizedClassifier.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\ICategorizedClassifier.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\ICategorizedClassifierConstants.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\ICategorizedClassifierConstants.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\IClassifier.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\IClassifier.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\IClassifierConstants.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\IClassifierConstants.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\IStopWordProvider.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\IStopWordProvider.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\ITokenizer.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\ITokenizer.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\ITrainable.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\ITrainable.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\ITrainableClassifier.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\ITrainableClassifier.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\PorterStemmer.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\PorterStemmer.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\SimpleClassifier.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\SimpleClassifier.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\SimpleHtmlTokenizer.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\SimpleHtmlTokenizer.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Summarizer\ISummarizer.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Summarizer\ISummarizer.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Summarizer\SimpleSummarizer.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Summarizer\SimpleSummarizer.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\Utilities.cs" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\Utilities.cs">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\DefaultStopWords.txt" Description="File successfully backed up as D:\My Work\C#\Ai\Proiect-AI-2012---GUI\Backup\DefaultStopWords.txt">
+</Event><Event ErrorLevel="1" Project="NClassifier" Source="NClassifier\NClassifier.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\NClassifier.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="NClassifier" Source="NClassifier\NClassifier.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NClassifier" Source="NClassifier\NClassifier.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

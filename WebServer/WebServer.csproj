@@ -81,6 +81,7 @@
     <Compile Include="Data\ModuleWorker.cs" />
     <Compile Include="Data\DocumentManager.cs" />
     <Compile Include="Data\IDocumentManager.cs" />
+    <Compile Include="Data\Summarisation.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -92,6 +93,7 @@
     <Compile Include="Models\DocumentEntityManager.cs" />
     <Compile Include="Models\DocumentResponse.cs" />
     <Compile Include="Models\IDocumentEntityManager.cs" />
+    <Compile Include="ModelView\AnswerModelView.cs" />
     <Compile Include="ModelView\DocumentModelView.cs" />
     <Compile Include="ModelView\ErrorModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +103,8 @@
     <Content Include="App_Data\WebServerDatabase_log.ldf">
       <DependentUpon>WebServerDatabase.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Interactivity.css" />
+    <Content Include="Scripts\interactivity.js" />
     <Content Include="Content\Summary.css" />
     <Content Include="Content\Timeline.css" />
     <Content Include="Scripts\jit-yc.js" />
@@ -145,6 +149,12 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DocumentDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NClassifier\NClassifier.csproj">
+      <Project>{688701F9-7D95-435D-941F-54A4F3437205}</Project>
+      <Name>NClassifier</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
