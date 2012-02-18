@@ -16,7 +16,7 @@ div.tooltip ul li {list-style:none; cursor: pointer; margin:1px; background:#BBD
 h2 {margin-top:30px;}
 div#situation {min-height:400px}
 
-#canvasDiv{background:#DDDDEE;  -moz-border-radius: 14px;border-radius: 14px; }
+#canvasDiv{background:#DDDDEE;  -moz-border-radius: 14px;border-radius: 14px; height: 300px; overflow: auto; }
 a.clustersBtn{display:block; float:right; margin:2px; font-size:16px; cursor:pointer; background:#DDDDDD; width: 22px; height:22px;  -moz-border-radius: 100px; border-radius: 100px; text-align:center;}
 
 /* generat */

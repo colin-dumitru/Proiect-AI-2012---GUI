@@ -58,13 +58,13 @@ function loaded(xml) {
     var bigger = $("<a class='clustersBtn nosel'>−</span>").click(function () {
         if (clusterIndex + 1 < clusters.length) {
             clusterIndex++;
-            drawSituations(situations, clusters[clusterIndex]);
+            drawSituations(situations, clusters[clusterIndex], clusterIndex);
         }
     });
     var smaller = $("<a class='clustersBtn nosel'>+</span>").click(function () {
         if (clusterIndex - 1 >= 0) {
             clusterIndex--;
-            drawSituations(situations, clusters[clusterIndex]);
+            drawSituations(situations, clusters[clusterIndex], clusterIndex);
         }
     });
     doc.append(bigger);
@@ -91,7 +91,7 @@ function loaded(xml) {
 
     situations.sort(compare);
 
-    drawSituations(situations, clusters[clusterIndex]);
+    drawSituations(situations, clusters[clusterIndex], clusterIndex);
 }
 
 function drawCircle(context, x, y, r) {
@@ -101,15 +101,17 @@ function drawCircle(context, x, y, r) {
     context.fill();
 }
 
-function drawSituations(situations, intervals) {
+function drawSituations(situations, intervals, scale) {
     if (toolTip != null)
         toolTip.remove();
 
     var canvasDiv = $("#canvasDiv");
     canvasDiv.empty();
     canvasDiv.css({ padding: "10px" });
-    var canvasWidth = canvasDiv.width();
-    var canvasHeight = Math.ceil(canvasWidth / intervals);
+    //var canvasWidth = canvasDiv.width();
+    //var canvasHeight = Math.ceil(canvasWidth / intervals);
+    var canvasWidth = canvasDiv.width() * scale;
+    var canvasHeight = canvasDiv.height();
 
     var canvas = $("<canvas></canvas>").attr({ id: "canv", width: canvasWidth, height: canvasHeight });
     canvasDiv.append(canvas);

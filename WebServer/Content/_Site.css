@@ -5,7 +5,7 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #AAAAAA;
+    background-color: #95badb;
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -15,7 +15,7 @@ body
 
 a:link
 {
-    color: #0066CC;
+    color: #034af3;
     text-decoration: underline;
 }
 a:visited
@@ -29,7 +29,7 @@ a:hover
 }
 a:active
 {
-    color: s;
+    color: #12eb87;
 }
 
 p, ul
